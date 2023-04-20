@@ -2,7 +2,7 @@ package edu.utsa.cs3443.dungeon;
 
 /**
  */
-public class Entity {
+public abstract class Entity {
 
     private final String            m_name;             //
     private final int               m_minHP;            //
