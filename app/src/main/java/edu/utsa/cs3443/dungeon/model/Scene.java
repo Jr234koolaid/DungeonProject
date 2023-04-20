@@ -1,4 +1,4 @@
-package edu.utsa.cs3443.dungeon;
+package edu.utsa.cs3443.dungeon.model;
 
 /**
  */
