@@ -2,12 +2,13 @@ package edu.utsa.cs3443.dungeon;
 
 /**
  */
-public class Entity {
+public abstract class Entity {
 
     private final String            m_name;             //
     private final int               m_minHP;            //
     private final int               m_maxHP;            //
     private final char              m_smallCharacter;   //
+    private char[][]                m_largeCharacter;     //
     private int                     m_hp;               //
 
     /**
@@ -62,8 +63,9 @@ public class Entity {
 
     /**
      */
-    void loadLargeCharacter()
+    void loadLargeCharacter(final String _path)
     {
+        // TODO: Load large character from file
     }
 
 } // class Entity
