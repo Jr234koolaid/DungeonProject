@@ -3,46 +3,86 @@
 <!-- Spruce this up someone pls -->
 
 <!-- Main linear layout -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="#000000">
 
-    <!-- Game text -->
+    <TextView
+        android:id="@+id/mm_title3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+        android:fontFamily="@font/courier_prime"
+        android:text="(ascii art?)"
+        android:textAlignment="center"
+        android:textColor="#0FBD17"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/mm_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.729" />
+
+    <Button
+        android:id="@+id/mm_continueGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#140FBD17"
+        android:fontFamily="@font/courier_prime"
+        android:text="Continue Game"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mm_newGame"
+        app:strokeColor="#0FBD17"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/mm_newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#140FBD17"
+        android:fontFamily="@font/courier_prime"
+        android:text="New Game"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mm_title"
+        app:strokeColor="#0FBD17"
+        app:strokeWidth="2dp" />
+
     <TextView
         android:id="@+id/mm_title"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+        android:fontFamily="@font/courier_prime"
+        android:text="Something Dungeon"
         android:textAlignment="center"
-        android:textSize="48sp"
-        android:text="TEXT DUNGEON" />
+        android:textColor="#0FBD17"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366" />
 
-    <!-- New game button -->
-    <Button
-        android:id="@+id/mm_new_button"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:text="NEW GAME" />
-
-    <!-- Continue game button -->
-    <Button
-        android:id="@+id/mm_continue_button"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:text="CONTINUE GAME" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
