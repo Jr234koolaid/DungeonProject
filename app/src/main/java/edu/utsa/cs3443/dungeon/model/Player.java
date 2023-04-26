@@ -6,9 +6,9 @@ public class Player extends Entity {
 
     /**
      */
-    public Player(final String _name, final char _smallCharacter)
+    public Player(final String _name)
     {
-        super(_name, 0, 100, _smallCharacter);
+        super(_name, 0, 100, '!');
     }
 
 } // class Player

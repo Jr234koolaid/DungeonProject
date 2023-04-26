@@ -8,8 +8,10 @@ public abstract class Entity {
     private final int               m_minHP;            //
     private final int               m_maxHP;            //
     private final char              m_smallCharacter;   //
-    private char[][]                m_largeCharacter;     //
+    private char[][]                m_largeCharacter;   //
     private int                     m_hp;               //
+    private int                     m_x;                //
+    private int                     m_y;                //
 
     /**
      */
@@ -28,42 +30,77 @@ public abstract class Entity {
 
     /**
      */
-    final String getName()
+    public final String getName()
     {
         return m_name;
     }
 
     /**
      */
-    final int getMinHP()
+    public final int getMinHP()
     {
         return m_minHP;
     }
 
     /**
      */
-    final int getMaxHP()
+    public final int getMaxHP()
     {
         return m_maxHP;
     }
 
     /**
      */
-    final char getSmallCharacter()
+    public final char getSmallCharacter()
     {
         return m_smallCharacter;
     }
 
     /**
      */
-    final int getHP()
+    public final int getHP()
     {
         return m_hp;
     }
 
     /**
      */
-    void loadLargeCharacter(final String _path)
+    public final int getX()
+    {
+        return m_x;
+    }
+
+    /**
+     */
+    public final int getY()
+    {
+        return m_y;
+    }
+
+    /**
+     */
+    public void setHP(final int _hp)
+    {
+        m_hp = _hp;
+    }
+
+    /**
+     */
+    public void setX(final int _x)
+    {
+        m_x = _x;
+    }
+
+    /**
+     */
+    public void setY(final int _y)
+    {
+        m_y = _y;
+    }
+
+    /**
+     */
+    public void loadLargeCharacter(final String _path)
     {
         // TODO: Load large character from file
     }

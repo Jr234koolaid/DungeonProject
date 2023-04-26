@@ -19,9 +19,9 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        TextView foundWeapon = findViewById(R.id.im_weapon);
-        Button buttonYes = findViewById(R.id.im_yes);
-        Button buttonNo = findViewById(R.id.im_no);
+        //TextView foundWeapon = findViewById(R.id.im_weapon);
+        //Button buttonYes = findViewById(R.id.im_yes);
+        //Button buttonNo = findViewById(R.id.im_no);
 
         // foundWeapon.setText(???);
         // buttonYes.setOnClickListener(new Some_Controller_2());
