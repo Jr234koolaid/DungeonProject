@@ -2,10 +2,44 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ITEM_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemActivity">
+    android:orientation="vertical"
+    tools:context=".view.EnemyActivity">
 
+    <!-- Table layout of item will be programmatically added here -->
 
+    <!-- TODO: Make look good please -->
+    <TextView
+        android:id="@+id/ENEMY_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Item name and stuff"/>
+
+    <!-- Button layout -->
+    <LinearLayout
+        android:id="@+id/ITEM_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Accept button -->
+        <Button
+            android:id="@+id/ITEM_button_accept"
+            android:tag="Accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Reject button -->
+        <Button
+            android:id="@+id/ITEM_button_reject"
+            android:tag="Reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

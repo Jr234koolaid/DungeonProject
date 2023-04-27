@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="MAP_map" type="id" />
+    <item name="ENEMY_enemy" type="id" />
+    <item name="ITEM_item" type="id" />
+</resources>
