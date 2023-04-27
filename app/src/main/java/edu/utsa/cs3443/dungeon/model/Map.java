@@ -1,20 +1,29 @@
 package edu.utsa.cs3443.dungeon.model;
 
+import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
+
+import edu.utsa.cs3443.dungeon.R;
 
 /**
  */
-public class Map
+public class Map extends TableLayout implements TableView
 {
     // Class variables
-    private static final int        MAX_MAP_WIDTH = 35;     //
-    private static final int        MAX_MAP_HEIGHT = 15;    //
+    protected static final int      MAX_MAP_WIDTH = 35;     //
+    protected static final int      MAX_MAP_HEIGHT = 15;    //
 
     // Member variables
     private char[][]                m_data;         //
@@ -24,8 +33,10 @@ public class Map
 
     /**
      */
-    public Map()
+    public Map(Context _context)
     {
+        super(_context);
+
         m_enemyList = new ArrayList<>();
         m_itemList = new ArrayList<>();
     }
@@ -70,17 +81,17 @@ public class Map
     public void updatePlayer(final Player _player)
     {
         // Check if player can move
-        final int setX = _player.getX();
-        final int setY = _player.getY();
+        final int setX = _player.getPositionX();
+        final int setY = _player.getPositionY();
 
         if (m_data[setY][setX] == ' ')
         {
             // Replace player's previous spot with an empty space
-            m_data[m_player.getY()][m_player.getX()] = ' ';
+            m_data[m_player.getPositionY()][m_player.getPositionX()] = ' ';
 
             // Set player spot
-            m_player.setX(setX);
-            m_player.setY(setY);
+            m_player.setPositionX(setX);
+            m_player.setPositionY(setY);
 
             m_data[setY][setX] = m_player.getSmallCharacter();
         }
@@ -109,7 +120,62 @@ public class Map
 
     /**
      */
-    public void loadData(final String _root, AssetManager _assetManager) throws IOException
+    public void generate()
+    {
+        // Clear views
+        this.removeAllViews();
+
+        // Get context resources
+        Context context = getContext();
+        Resources res = context.getResources();
+        DisplayMetrics metrics = res.getDisplayMetrics();
+
+        // Create table
+        final float textWidth = 10.f;
+        final float rowWidth = (MAX_MAP_WIDTH * textWidth);
+
+        final int rowLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rowWidth, metrics));
+        final int textLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, textWidth, metrics));
+        final int textLayoutHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30.f, metrics));
+
+        for (int i = 0; i < MAX_MAP_HEIGHT; i++)
+        {
+            // Create row
+            TableRow row = new TableRow(context);
+            row.setLayoutParams(new TableLayout.LayoutParams(rowLayoutWidth, TableLayout.LayoutParams.WRAP_CONTENT));
+
+            // Create text columns
+            for (int j = 0; j < MAX_MAP_WIDTH; j++)
+            {
+                TextView textView = new TextView(context);
+                textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
+                textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
+                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                textView.setTextColor(context.getColorStateList(R.color.teal_700));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
+                textView.setText(String.valueOf(m_data[i][j]));
+
+                // Add columns to row
+                row.addView(textView);
+            }
+
+            // Add row to table
+            this.addView(row);
+        }
+    }
+
+    /**
+     */
+    @Override
+    public void generate(Context _context)
+    {
+        generate();
+    }
+
+    /**
+     */
+    @Override
+    public void load(final String _root, AssetManager _assetManager) throws IOException
     {
         // Allocate data
         m_data = new char[MAX_MAP_HEIGHT][MAX_MAP_WIDTH];
@@ -158,7 +224,7 @@ public class Map
 
     /*
      */
-    void loadPlayer(final String _root, AssetManager _assetManager) throws IOException
+    public void loadPlayer(final String _root, AssetManager _assetManager) throws IOException
     {
         // Open player file
         InputStream infoStream = _assetManager.open(_root + "/" + "player.tett");
@@ -177,8 +243,8 @@ public class Map
         final char smallCharacter = infoTokens[2].charAt(0);
 
         m_player = new Player(name, smallCharacter);
-        m_player.setX(x);
-        m_player.setY(y);
+        m_player.setPositionX(x);
+        m_player.setPositionY(y);
 
         // Replace character at enemy x and y with enemy
         m_data[y][x] = smallCharacter;
@@ -217,9 +283,9 @@ public class Map
             final int maxHP = Integer.parseInt(infoTokens[3]);
 
             Enemy enemy = new Enemy(name, maxHP, smallCharacter);
-            enemy.setX(x);
-            enemy.setY(y);
-            enemy.loadLargeCharacter(enemyDir, _assetManager);
+            enemy.setPositionX(x);
+            enemy.setPositionY(y);
+            enemy.load(enemyDir, _assetManager);
 
             // Add enemy to list
             m_enemyList.add(enemy);
@@ -263,9 +329,9 @@ public class Map
             final int speed = Integer.parseInt(infoTokens[5]);
 
             Item item = new Item(name, smallCharacter);
-            item.setX(x);
-            item.setY(y);
-            item.loadLargeCharacter(itemDir, _assetManager);
+            item.setPositionX(x);
+            item.setPositionY(y);
+            item.load(itemDir, _assetManager);
 
             // Add item to list
             m_itemList.add(item);

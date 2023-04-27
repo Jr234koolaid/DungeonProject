@@ -2,8 +2,31 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ENEMY_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.EnemyActivity">
+
+    <!-- Table layout of enemy will be programmatically added here -->
+
+    <!-- TODO: Make look good please -->
+    <TextView
+        android:id="@+id/ENEMY_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Health pool and stuff"/>
+
+    <LinearLayout
+        android:id="@+id/ENEMY_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Buttons for interacting with enemy will be added here -->
+
+    </LinearLayout>
 
 </LinearLayout>
