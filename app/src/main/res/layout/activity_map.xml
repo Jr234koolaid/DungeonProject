@@ -10,112 +10,62 @@
 
     <!-- Table layout of map will be programmatically added here -->
 
+    <!-- TODO: Make look good please -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/interact_button"
+            android:tag="Interact"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="275dp"
+            android:layout_marginTop="15dp"
+            android:text="Prev"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/left_button"
+            android:tag="Left"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:text="Prev"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/right_button"
+            android:tag="Right"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="30dp"
+            android:text="Prev"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/up_button"
+            android:tag="Up"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="-30dp"
+            android:text="Prev"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/down_button"
+            android:tag="Down"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="90dp"
+            android:text="Prev"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
 </LinearLayout>
-
-<!--
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MapActivity">
-
-    <TextView
-        android:id="@+id/MAP_view"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/map_border"
-        android:scrollHorizontally="true"
-        android:minEms="3"
-        android:maxLines="20"
-        android:letterSpacing="-0.001"
-        android:text="Map Preview"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/interact_button"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MAP_view" />
-
-    <Button
-        android:id="@+id/left_button"
-        android:layout_width="75dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/interact_button"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MAP_view" />
-
-    <Button
-        android:id="@+id/right_button"
-        android:layout_width="75dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toEndOf="@id/interact_button"
-        app:layout_constraintTop_toBottomOf="@id/MAP_view" />
-
-    <Button
-        android:id="@+id/up_button"
-        android:layout_width="75dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/interact_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MAP_view"
-        app:layout_constraintVertical_bias="0.9" />
-
-    <Button
-        android:id="@+id/down_button"
-        android:layout_width="75dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Prev"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/interact_button"
-        app:layout_constraintVertical_bias="0.1" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
--->
