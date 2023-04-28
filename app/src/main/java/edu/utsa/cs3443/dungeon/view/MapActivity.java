@@ -34,10 +34,8 @@ public class MapActivity extends AppCompatActivity
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         Intent intent = getIntent();
 
-        // TODO (Juan): Replace with real info
-
-        // final int floorLevel = intent.getInteger("EXTRA_MAP_FLOOR_LEVEL", 1);
-        // final int mapLevel = intent.getInteger("EXTRA_MAP_MAP_LEVEL", 1);
+        final int floorLevel = intent.getIntExtra("EXTRA_MAP_PUSH_FLOOR", 0);
+        final int mapLevel = intent.getIntExtra("EXTRA_MAP_PUSH_MAP", 0);
 
         // Setup map layout
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -61,14 +59,16 @@ public class MapActivity extends AppCompatActivity
 
             // TODO (Juan): Change with intent
             // Get floor directories
-            final String rootDirName = ("floor_" + String.valueOf(1));
-            final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(1));
+            final String rootDirName = ("floor_" + String.valueOf(floorLevel));
+            final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(mapLevel));
             final String enemyDirName = (mapDirName + "/" + "enemy");
             final String itemDirName = (mapDirName + "/" + "item");
 
             // Load all map data
-            map.load(mapDirName, assetManager);
+            map.loadInfo(mapDirName, assetManager);
+            map.loadMap(mapDirName, assetManager);
             map.loadPlayer(mapDirName, assetManager);
+            map.loadDoors(mapDirName, assetManager);
             map.loadEnemies(enemyDirName, assetManager);
             map.loadItems(itemDirName, assetManager);
         }
@@ -106,18 +106,6 @@ public class MapActivity extends AppCompatActivity
         // Get down button
         Button downButton = findViewById(R.id.down_button);
         downButton.setOnClickListener(mapController);
-    }
-
-    /**
-     */
-    @Override
-    protected void onActivityResult(int _requestCode, int _resultCode, Intent _data)
-    {
-        super.onActivityResult(_requestCode, _resultCode, _data);
-
-        // Get map
-        Map map = findViewById(R.id.MAP_map);
-        map.generate();
     }
 
 } // class MapActivity

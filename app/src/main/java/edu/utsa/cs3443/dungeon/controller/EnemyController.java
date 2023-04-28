@@ -24,8 +24,10 @@ public class EnemyController implements View.OnClickListener
     @Override
     public void onClick(View _view)
     {
+        // Check tag
         switch(String.valueOf(_view.getTag()))
         {
+            // TODO (Juan): Handle cases
             case "Back":
             {
                 Intent intent = new Intent();

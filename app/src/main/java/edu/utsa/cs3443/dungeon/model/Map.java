@@ -26,8 +26,11 @@ public class Map extends TableLayout
     protected static final int      MAX_MAP_HEIGHT = 15;    //
 
     // Member variables
+    private int                     m_nextFloor;    //
+    private int                     m_nextMap;      //
     private char[][]                m_data;         //
     private Player                  m_player;       //
+    private ArrayList<Door>         m_doorList;     //
     private ArrayList<Enemy>        m_enemyList;    //
     private ArrayList<Item>         m_itemList;     //
 
@@ -37,8 +40,23 @@ public class Map extends TableLayout
     {
         super(_context);
 
+        m_doorList = new ArrayList<>();
         m_enemyList = new ArrayList<>();
         m_itemList = new ArrayList<>();
+    }
+
+    /**
+     */
+    public final int getNextFloor()
+    {
+        return m_nextFloor;
+    }
+
+    /**
+     */
+    public final int getNextMap()
+    {
+        return m_nextMap;
     }
 
     /**
@@ -60,6 +78,13 @@ public class Map extends TableLayout
     public final Player getPlayer()
     {
         return m_player;
+    }
+
+    /**
+     */
+    public final ArrayList<Door> getDoorList()
+    {
+        return m_doorList;
     }
 
     /**
@@ -166,7 +191,32 @@ public class Map extends TableLayout
 
     /**
      */
-    public void load(final String _root, AssetManager _assetManager) throws IOException
+    public void loadInfo(final String _root, AssetManager _assetManager) throws IOException
+    {
+        // Open player file
+        InputStream infoStream = _assetManager.open(_root + "/" + "map.tinf");
+
+        // Go through the file
+        Scanner scanner = new Scanner(infoStream);
+
+        // Get player info
+        final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+        final String name = lineTokens[0];
+        final String[] infoTokens = lineTokens[1].split(",");
+
+        // Set map info
+        m_nextFloor = Integer.parseInt(infoTokens[0]);
+        m_nextMap = Integer.parseInt(infoTokens[1]);
+
+        scanner.close();
+
+        // Close info file
+        infoStream.close();
+    }
+
+    /**
+     */
+    public void loadMap(final String _root, AssetManager _assetManager) throws IOException
     {
         // Allocate data
         m_data = new char[MAX_MAP_HEIGHT][MAX_MAP_WIDTH];
@@ -218,7 +268,7 @@ public class Map extends TableLayout
     public void loadPlayer(final String _root, AssetManager _assetManager) throws IOException
     {
         // Open player file
-        InputStream infoStream = _assetManager.open(_root + "/" + "player.tett");
+        InputStream infoStream = _assetManager.open(_root + "/" + "player.tinf");
 
         // Go through the file
         Scanner scanner = new Scanner(infoStream);
@@ -228,7 +278,7 @@ public class Map extends TableLayout
         final String name = lineTokens[0];
         final String[] infoTokens = lineTokens[1].split(",");
 
-        // Create enemy
+        // Create player
         final int x = Integer.parseInt(infoTokens[0]);
         final int y = Integer.parseInt(infoTokens[1]);
         final char smallCharacter = infoTokens[2].charAt(0);
@@ -246,15 +296,55 @@ public class Map extends TableLayout
         infoStream.close();
     }
 
+    /*
+     */
+    public void loadDoors(final String _root, AssetManager _assetManager) throws IOException
+    {
+        // Clear door list
+        m_doorList.clear();
+
+        // Open info file
+        InputStream infoStream = _assetManager.open(_root + "/" + "door.tinf");
+
+        // Go through info file line by line
+        Scanner scanner = new Scanner(infoStream);
+        while(scanner.hasNext())
+        {
+            // Get door info
+            final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String name = lineTokens[0];
+            final String[] infoTokens = lineTokens[1].split(",");
+
+            // Create door
+            final int x = Integer.parseInt(infoTokens[0]);
+            final int y = Integer.parseInt(infoTokens[1]);
+            final char smallCharacter = infoTokens[2].charAt(0);
+
+            Door door = new Door(name, smallCharacter);
+            door.setPositionX(x);
+            door.setPositionY(y);
+
+            // Add door to list
+            m_doorList.add(door);
+
+            // Replace character at door x and y with door
+            m_data[y][x] = smallCharacter;
+        }
+        scanner.close();
+
+        // Close info file
+        infoStream.close();
+    }
+
     /**
      */
-    public void loadEnemies(final String _path, AssetManager _assetManager) throws IOException
+    public void loadEnemies(final String _root, AssetManager _assetManager) throws IOException
     {
         // Clear enemy list
         m_enemyList.clear();
 
         // Open info file
-        InputStream infoStream = _assetManager.open(_path + "/" + "enemy.tett");
+        InputStream infoStream = _assetManager.open(_root + "/" + "enemy.tinf");
 
         // Go through info file line by line
         Scanner scanner = new Scanner(infoStream);
@@ -265,7 +355,7 @@ public class Map extends TableLayout
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
-            final String enemyDir = (_path + "/" + name.toLowerCase());
+            final String enemyDir = (_root + "/" + name.toLowerCase());
 
             // Create enemy
             final int x = Integer.parseInt(infoTokens[0]);
@@ -292,13 +382,13 @@ public class Map extends TableLayout
 
     /**
      */
-    public void loadItems(final String _path, AssetManager _assetManager) throws IOException
+    public void loadItems(final String _root, AssetManager _assetManager) throws IOException
     {
         // Clear item list
         m_itemList.clear();
 
         // Open info file
-        InputStream infoStream = _assetManager.open(_path + "/" + "item.tett");
+        InputStream infoStream = _assetManager.open(_root + "/" + "item.tett");
 
         // Go through info file line by line
         Scanner scanner = new Scanner(infoStream);
@@ -309,7 +399,7 @@ public class Map extends TableLayout
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
-            final String itemDir = (_path + "/" + name.toLowerCase());
+            final String itemDir = (_root + "/" + name.toLowerCase());
 
             // Create Item
             final int x = Integer.parseInt(infoTokens[0]);

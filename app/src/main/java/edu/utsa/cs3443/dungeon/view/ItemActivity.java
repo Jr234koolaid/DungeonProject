@@ -65,7 +65,7 @@ public class ItemActivity extends AppCompatActivity {
         LinearLayout mainLayout = findViewById(R.id.ITEM_main_layout);
         mainLayout.addView(item.getLayout(), 0);
 
-        // TODO (Juan): Move or something
+        // TODO (Juan): REMOVE or finish
         ItemController itemController = new ItemController(this);
 
         Button acceptButton = findViewById(R.id.ITEM_button_accept);

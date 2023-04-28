@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.utsa.cs3443.dungeon.R;
+import edu.utsa.cs3443.dungeon.model.Door;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Item;
 import edu.utsa.cs3443.dungeon.model.Map;
@@ -101,11 +102,23 @@ public class MapController implements View.OnClickListener
 
             // Check interactions with entities
             case "Interact":
+                for (final Door door : map.getDoorList())
+                {
+                    if (player.canInteract(door))
+                    {
+                        // Finish this activity
+                        Intent intent = new Intent();
+                        intent.putExtra("EXTRA_MAP_POP_FLOOR", map.getNextFloor());
+                        intent.putExtra("EXTRA_MAP_POP_MAP", map.getNextMap());
+
+                        m_activity.setResult(Activity.RESULT_OK, intent);
+                        m_activity.finish();
+                    }
+                }
                 for (final Enemy enemy : map.getEnemyList())
                 {
                     if (player.canInteract(enemy))
                     {
-                        // TODO (Juan): Start the enemy activity here
                         System.out.println("Interacting with enemy: " + enemy.getName());
 
                         Intent intent = new Intent(m_activity, EnemyActivity.class);
@@ -120,7 +133,6 @@ public class MapController implements View.OnClickListener
                 {
                     if (player.canInteract(item))
                     {
-                        // TODO (Juan): Start the item activity here
                         System.out.println("Interacting with enemy: " + item.getName());
 
                         Intent intent = new Intent(m_activity, ItemActivity.class);
