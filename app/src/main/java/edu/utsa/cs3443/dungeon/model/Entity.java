@@ -19,7 +19,7 @@ import edu.utsa.cs3443.dungeon.R;
 
 /**
  */
-public abstract class Entity implements TableView, Serializable
+public abstract class Entity implements Serializable
 {
     // Class variable
     protected static final int      MAX_SPRITE_WIDTH = 30;  //
@@ -141,7 +141,6 @@ public abstract class Entity implements TableView, Serializable
 
     /**
      */
-    @Override
     public void generate(Context _context)
     {
         // Create new table layout
@@ -187,8 +186,9 @@ public abstract class Entity implements TableView, Serializable
 
     /**
      */
-    @Override
-    public void load(final String _root, AssetManager _assetManager) throws IOException
+    public void loadLargeCharacter(
+            final String    _root,
+            AssetManager    _assetManager) throws IOException
     {
         // Allocate large character
         m_largeCharacter = new char[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];

@@ -19,7 +19,7 @@ import edu.utsa.cs3443.dungeon.R;
 
 /**
  */
-public class Map extends TableLayout implements TableView
+public class Map extends TableLayout
 {
     // Class variables
     protected static final int      MAX_MAP_WIDTH = 35;     //
@@ -166,15 +166,6 @@ public class Map extends TableLayout implements TableView
 
     /**
      */
-    @Override
-    public void generate(Context _context)
-    {
-        generate();
-    }
-
-    /**
-     */
-    @Override
     public void load(final String _root, AssetManager _assetManager) throws IOException
     {
         // Allocate data
@@ -285,7 +276,7 @@ public class Map extends TableLayout implements TableView
             Enemy enemy = new Enemy(name, maxHP, smallCharacter);
             enemy.setPositionX(x);
             enemy.setPositionY(y);
-            enemy.load(enemyDir, _assetManager);
+            enemy.loadLargeCharacter(enemyDir, _assetManager);
 
             // Add enemy to list
             m_enemyList.add(enemy);
@@ -331,7 +322,7 @@ public class Map extends TableLayout implements TableView
             Item item = new Item(name, smallCharacter);
             item.setPositionX(x);
             item.setPositionY(y);
-            item.load(itemDir, _assetManager);
+            item.loadLargeCharacter(itemDir, _assetManager);
 
             // Add item to list
             m_itemList.add(item);
