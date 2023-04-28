@@ -5,6 +5,7 @@
     android:id="@+id/ENEMY_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context=".view.EnemyActivity">
 
@@ -15,15 +16,21 @@
         android:id="@+id/ENEMY_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/courier_prime"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="25dp"
+        android:text="Health pool and stuff"
         android:textAlignment="center"
-        android:text="Health pool and stuff"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0FBD17" />
 
     <LinearLayout
         android:id="@+id/ENEMY_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <!-- Buttons for interacting with enemy will be added here -->
 

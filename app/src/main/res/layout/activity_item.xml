@@ -1,44 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ITEM_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context=".view.EnemyActivity">
 
     <!-- Table layout of item will be programmatically added here -->
 
     <!-- TODO: Make look good please -->
+
+    <!-- Button layout -->
+
     <TextView
         android:id="@+id/ENEMY_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/courier_prime"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="25dp"
+        android:text="Item name and stuff"
         android:textAlignment="center"
-        android:text="Item name and stuff"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#0FBD17" />
 
-    <!-- Button layout -->
     <LinearLayout
         android:id="@+id/ITEM_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Reject button -->
 
         <!-- Accept button -->
         <Button
-            android:id="@+id/ITEM_button_accept"
-            android:tag="Accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Reject button -->
-        <Button
             android:id="@+id/ITEM_button_reject"
-            android:tag="Reject"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Reject"
+            android:text="Reject"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:cornerRadius="0sp"
+            app:strokeColor="#0FBD17"
+            app:strokeWidth="2dp" />
+
+        <Button
+            android:id="@+id/ITEM_button_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Accept"
+            android:text="Accept"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:cornerRadius="0sp"
+            app:strokeColor="#0FBD17"
+            app:strokeWidth="2dp" />
 
     </LinearLayout>
 
