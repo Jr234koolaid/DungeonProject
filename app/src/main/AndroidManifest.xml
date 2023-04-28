@@ -12,13 +12,8 @@
         android:theme="@style/Theme.Dungeon"
         tools:targetApi="31">
 
-        <!--
         <activity
             android:name=".view.MapActivity"
-            android:exported="false" />
-        -->
-        <activity
-            android:name=".view.MainActivity"
             android:exported="false" />
         <activity
             android:name=".view.ItemActivity"
@@ -26,19 +21,8 @@
         <activity
             android:name=".view.EnemyActivity"
             android:exported="false" />
-        <!--
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        -->
-        <activity
-            android:name=".view.MapActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

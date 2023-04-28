@@ -59,7 +59,7 @@ public class EnemyActivity extends AppCompatActivity
 
         LinearLayout buttonLayout = findViewById(R.id.ENEMY_button_layout);
 
-        // TODO (Juan): REMOVE
+        // TODO (Juan): REMOVE or finish
         EnemyController enemyController = new EnemyController(this);
 
         Button button = new Button(this);

@@ -24,8 +24,10 @@ public class ItemController implements View.OnClickListener
     @Override
     public void onClick(View _view)
     {
+        // Check tag
         switch(String.valueOf(_view.getTag()))
         {
+            // TODO (Juan): Handle cases
             case "Accept":
             case "Reject":
             {
