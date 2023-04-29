@@ -25,31 +25,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.366" />
 
-    <TextView
-        android:id="@+id/MAIN_title_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clipToOutline="false"
-        android:fontFamily="@font/courier_prime"
-        android:text="(ascii art?)"
-        android:textAlignment="center"
-        android:textColor="#0FBD17"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/MAIN_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
-
     <Button
         android:id="@+id/MAIN_new_button"
-        android:tag="New"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:backgroundTint="#140FBD17"
         android:fontFamily="@font/courier_prime"
+        android:tag="New"
         android:text="New Game"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
@@ -64,18 +47,18 @@
 
     <Button
         android:id="@+id/MAIN_continue_button"
-        android:tag="Continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:backgroundTint="#140FBD17"
         android:fontFamily="@font/courier_prime"
+        android:tag="Continue"
         android:text="Continue Game"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:cornerRadius="0sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MAIN_new_button"
         app:strokeColor="#0FBD17"
