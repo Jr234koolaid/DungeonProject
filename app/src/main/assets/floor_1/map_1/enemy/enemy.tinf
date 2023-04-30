@@ -1,1 +1,4 @@
+// Coordinates are 0 index based on both x and y
+// Layout:      ENEMY_NAME{ X_COORD, Y_COORD, SMALL_CHARACTER, MAX_HEALTH }
+
 Fly{ 10, 3, ^, 10 }

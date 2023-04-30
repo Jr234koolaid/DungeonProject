@@ -193,25 +193,24 @@ public class Map extends TableLayout
      */
     public void loadInfo(final String _root, AssetManager _assetManager) throws IOException
     {
-        // Open player file
-        InputStream infoStream = _assetManager.open(_root + "/" + "map.tinf");
+        // Go through map file
+        TextParser parser = new TextParser((_root + "/" + "map.tinf"), _assetManager);
 
-        // Go through the file
-        Scanner scanner = new Scanner(infoStream);
+        // Get map info
+        final String line = parser.next();
+        if (line != null)
+        {
+            final String[] lineTokens = line.replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String name = lineTokens[0];
+            final String[] infoTokens = lineTokens[1].split(",");
 
-        // Get player info
-        final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
-        final String name = lineTokens[0];
-        final String[] infoTokens = lineTokens[1].split(",");
+            // Set map info
+            m_nextFloor = Integer.parseInt(infoTokens[0]);
+            m_nextMap = Integer.parseInt(infoTokens[1]);
+        }
 
-        // Set map info
-        m_nextFloor = Integer.parseInt(infoTokens[0]);
-        m_nextMap = Integer.parseInt(infoTokens[1]);
-
-        scanner.close();
-
-        // Close info file
-        infoStream.close();
+        // Close parser
+        parser.close();
     }
 
     /**
@@ -221,21 +220,19 @@ public class Map extends TableLayout
         // Allocate data
         m_data = new char[MAX_MAP_HEIGHT][MAX_MAP_WIDTH];
 
-        // Open data file
-        InputStream dataStream = _assetManager.open(_root + "/" + "map.tmap");
+        // Go through map data file
+        TextParser parser = new TextParser((_root + "/" + "map.tmap"), _assetManager);
 
-        // Go through the file
-        Scanner scanner = new Scanner(dataStream);
-
-        // Get lines from file
+        // Get map data
         int sizeY = 0;
-        for (; (scanner.hasNext() && (sizeY < MAX_MAP_HEIGHT)); sizeY++)
-        {
-            final String line = scanner.nextLine();
-            final int min = Math.min(line.length(), MAX_MAP_WIDTH);
 
+        String line = null;
+        while (((line = parser.next()) != null) && (sizeY < MAX_MAP_HEIGHT))
+        {
             // Get characters from string
             int sizeX = 0;
+
+            final int min = Math.min(line.length(), MAX_MAP_WIDTH);
             for (; sizeX < min; sizeX++)
                 m_data[sizeY][sizeX] = line.charAt(sizeX);
 
@@ -245,6 +242,9 @@ public class Map extends TableLayout
                 for (; sizeX < MAX_MAP_WIDTH; sizeX++)
                     m_data[sizeY][sizeX] = ' ';
             }
+
+            // Increment size
+            sizeY++;
         }
 
         // Fill in missing lines
@@ -257,43 +257,40 @@ public class Map extends TableLayout
                     m_data[sizeY][sizeX] = ' ';
             }
         }
-        scanner.close();
 
-        // Close data file
-        dataStream.close();
+        // Close parser
+        parser.close();
     }
 
     /*
      */
     public void loadPlayer(final String _root, AssetManager _assetManager) throws IOException
     {
-        // Open player file
-        InputStream infoStream = _assetManager.open(_root + "/" + "player.tinf");
-
-        // Go through the file
-        Scanner scanner = new Scanner(infoStream);
+        // Go through player file
+        TextParser parser = new TextParser((_root + "/" + "player.tinf"), _assetManager);
 
         // Get player info
-        final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
-        final String name = lineTokens[0];
-        final String[] infoTokens = lineTokens[1].split(",");
+        final String line = parser.next();
+        if (line != null)
+        {
+            final String[] lineTokens = line.replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String name = lineTokens[0];
+            final String[] infoTokens = lineTokens[1].split(",");
 
-        // Create player
-        final int x = Integer.parseInt(infoTokens[0]);
-        final int y = Integer.parseInt(infoTokens[1]);
-        final char smallCharacter = infoTokens[2].charAt(0);
+            // Create player
+            final int x = Integer.parseInt(infoTokens[0]);
+            final int y = Integer.parseInt(infoTokens[1]);
+            final char smallCharacter = infoTokens[2].charAt(0);
+            m_player = new Player(name, smallCharacter);
+            m_player.setPositionX(x);
+            m_player.setPositionY(y);
 
-        m_player = new Player(name, smallCharacter);
-        m_player.setPositionX(x);
-        m_player.setPositionY(y);
+            // Replace character at player x and y with player
+            m_data[y][x] = smallCharacter;
+        }
 
-        // Replace character at enemy x and y with enemy
-        m_data[y][x] = smallCharacter;
-
-        scanner.close();
-
-        // Close info file
-        infoStream.close();
+        // Close the parser
+        parser.close();
     }
 
     /*
@@ -303,15 +300,14 @@ public class Map extends TableLayout
         // Clear door list
         m_doorList.clear();
 
-        // Open info file
-        InputStream infoStream = _assetManager.open(_root + "/" + "door.tinf");
+        // Go through door file
+        TextParser parser = new TextParser((_root + "/" + "door.tinf"), _assetManager);
 
-        // Go through info file line by line
-        Scanner scanner = new Scanner(infoStream);
-        while(scanner.hasNext())
+        // Get door info
+        String line = null;
+        while ((line = parser.next()) != null)
         {
-            // Get door info
-            final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String[] lineTokens = line.replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
@@ -330,10 +326,9 @@ public class Map extends TableLayout
             // Replace character at door x and y with door
             m_data[y][x] = smallCharacter;
         }
-        scanner.close();
 
-        // Close info file
-        infoStream.close();
+        // Close parser
+        parser.close();
     }
 
     /**
@@ -343,15 +338,14 @@ public class Map extends TableLayout
         // Clear enemy list
         m_enemyList.clear();
 
-        // Open info file
-        InputStream infoStream = _assetManager.open(_root + "/" + "enemy.tinf");
+        // Go through enemy file
+        TextParser parser = new TextParser((_root + "/" + "enemy.tinf"), _assetManager);
 
-        // Go through info file line by line
-        Scanner scanner = new Scanner(infoStream);
-        while(scanner.hasNext())
+        // Get enemy info
+        String line = null;
+        while ((line = parser.next()) != null)
         {
-            // Get enemy info
-            final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String[] lineTokens = line.replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
@@ -374,10 +368,9 @@ public class Map extends TableLayout
             // Replace character at enemy x and y with enemy
             m_data[y][x] = smallCharacter;
         }
-        scanner.close();
 
-        // Close info file
-        infoStream.close();
+        // Close parser
+        parser.close();
     }
 
     /**
@@ -387,15 +380,14 @@ public class Map extends TableLayout
         // Clear item list
         m_itemList.clear();
 
-        // Open info file
-        InputStream infoStream = _assetManager.open(_root + "/" + "item.tett");
+        // Go through item file
+        TextParser parser = new TextParser((_root + "/" + "item.tinf"), _assetManager);
 
-        // Go through info file line by line
-        Scanner scanner = new Scanner(infoStream);
-        while(scanner.hasNext())
+        // Get item info
+        String line = null;
+        while ((line = parser.next()) != null)
         {
-            // Get item info
-            final String[] lineTokens = scanner.nextLine().replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
+            final String[] lineTokens = line.replaceAll(" ", "").replaceAll("\\}", "").split("\\{");
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
@@ -420,10 +412,9 @@ public class Map extends TableLayout
             // Replace character at item x and y with item
             m_data[y][x] = smallCharacter;
         }
-        scanner.close();
 
-        // Close info file
-        infoStream.close();
+        // Close parser
+        parser.close();
     }
 
 } // class Map
