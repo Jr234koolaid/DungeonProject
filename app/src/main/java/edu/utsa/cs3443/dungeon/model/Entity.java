@@ -193,21 +193,19 @@ public abstract class Entity implements Serializable
         // Allocate large character
         m_largeCharacter = new char[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];
 
-        // Open character file
-        InputStream characterStream = _assetManager.open(_root + "/" + "large_character.tett");
+        // Go through large character data file
+        TextParser parser = new TextParser((_root + "/" + "large_character.tett"), _assetManager);
 
-        // Go through the file
-        Scanner scanner = new Scanner(characterStream);
-
-        // Get lines from file
+        // Get large character data
         int sizeY = 0;
-        for (; (scanner.hasNext() && (sizeY < MAX_SPRITE_HEIGHT)); sizeY++)
-        {
-            final String line = scanner.nextLine();
-            final int min = Math.min(line.length(), MAX_SPRITE_WIDTH);
 
+        String line = null;
+        while (((line = parser.next()) != null) && (sizeY < MAX_SPRITE_HEIGHT))
+        {
             // Get characters from string
             int sizeX = 0;
+
+            final int min = Math.min(line.length(), MAX_SPRITE_WIDTH);
             for (; sizeX < min; sizeX++)
                 m_largeCharacter[sizeY][sizeX] = line.charAt(sizeX);
 
@@ -217,6 +215,9 @@ public abstract class Entity implements Serializable
                 for (; sizeX < MAX_SPRITE_WIDTH; sizeX++)
                     m_largeCharacter[sizeY][sizeX] = ' ';
             }
+
+            // Increment size
+            sizeY++;
         }
 
         // Fill in missing lines
@@ -229,10 +230,9 @@ public abstract class Entity implements Serializable
                     m_largeCharacter[sizeY][sizeX] = ' ';
             }
         }
-        scanner.close();
 
-        // Close character file
-        characterStream.close();
+        // Close parser
+        parser.close();
     }
 
 } // class Entity

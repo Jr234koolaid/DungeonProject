@@ -1,0 +1,8 @@
+// Coordinates are 0 index based on both x and y
+// Layout:      ITEM_NAME{ X_COORD, Y_COORD, SMALL_CHARACTER, ATTACK_STAT, DEFENSE_STAT, SPEED_STAT }
+
+// TODO (Juan): We could add to this if we want
+// TODO (Juan): NOTE - If we update params here, we have to update them also in the Map class
+
+Cap{ 7, 12, b, 0, 10, 2 }
+Pen{ 31, 4, !, 2, 0, 4 }

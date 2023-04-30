@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- Main layout -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,22 +13,23 @@
 
     <!-- Table layout of map will be programmatically added here -->
 
-    <!-- TODO: Make look good please -->
+    <!-- Button layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="245dp"
         android:layout_marginTop="40dp"
         android:gravity="center">
 
+        <!-- Interact button -->
         <Button
-            android:id="@+id/interact_button"
+            android:id="@+id/MAP_interact_button"
+            android:tag="Interact"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_marginStart="255dp"
             android:layout_marginTop="45dp"
             android:backgroundTint="#140FBD17"
             android:fontFamily="@font/courier_prime"
-            android:tag="Interact"
             android:text="Interact"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -36,14 +38,15 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
+        <!-- Interact button -->
         <Button
-            android:id="@+id/left_button"
+            android:id="@+id/MAP_left_button"
+            android:tag="Left"
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:layout_marginTop="45dp"
             android:backgroundTint="#140FBD17"
             android:fontFamily="@font/courier_prime"
-            android:tag="Left"
             android:text="◁"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -52,15 +55,16 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
+        <!-- Interact button -->
         <Button
-            android:id="@+id/right_button"
+            android:id="@+id/MAP_right_button"
+            android:tag="Right"
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:layout_marginStart="150dp"
             android:layout_marginTop="45dp"
             android:backgroundTint="#140FBD17"
             android:fontFamily="@font/courier_prime"
-            android:tag="Right"
             android:text="▷"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -69,15 +73,16 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
+        <!-- Interact button -->
         <Button
-            android:id="@+id/up_button"
+            android:id="@+id/MAP_up_button"
+            android:tag="Up"
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:layout_marginStart="75dp"
             android:layout_marginTop="-30dp"
             android:backgroundTint="#140FBD17"
             android:fontFamily="@font/courier_prime"
-            android:tag="Up"
             android:text="△"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -86,15 +91,16 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
+        <!-- Interact button -->
         <Button
-            android:id="@+id/down_button"
+            android:id="@+id/MAP_down_button"
+            android:tag="Down"
             android:layout_width="60dp"
             android:layout_height="70dp"
             android:layout_marginStart="75dp"
             android:layout_marginTop="120dp"
             android:backgroundTint="#140FBD17"
             android:fontFamily="@font/courier_prime"
-            android:tag="Down"
             android:text="▽"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
