@@ -12,10 +12,12 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.controller.EnemyController;
 import edu.utsa.cs3443.dungeon.model.Enemy;
+import edu.utsa.cs3443.dungeon.model.Map;
 
 /**
  */
@@ -62,7 +64,20 @@ public class EnemyActivity extends AppCompatActivity
         // TODO (Juan): REMOVE or finish
         EnemyController enemyController = new EnemyController(this);
 
-        Button button = new Button(this);
+        Button backButton = findViewById(R.id.ENEMY_button_back);
+        backButton.setOnClickListener(enemyController);
+
+        Button fightButton = findViewById(R.id.ENEMY_button_fight);
+        fightButton.setOnClickListener(enemyController);
+
+        // TODO (Josh): Get the enemy attack and health from file.
+        int health = 10;
+        int attack = 10;
+        String line = "Health: " + attack + " \nAttack: " + health;
+        TextView textView = findViewById(R.id.ENEMY_text);
+        textView.setText(line);
+
+        /*Button button = new Button(this);
         button.setTag(String.valueOf("Back"));
         button.setLayoutParams(new LinearLayout.LayoutParams(
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200.f, metrics)),
@@ -76,7 +91,7 @@ public class EnemyActivity extends AppCompatActivity
         button.setOnClickListener(enemyController);
 
         // Add button to button layout
-        buttonLayout.addView(button);
+        buttonLayout.addView(button);*/
     }
 
 } // class EnemyActivity

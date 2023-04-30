@@ -21,7 +21,6 @@
         android:paddingHorizontal="30dp"
         android:paddingTop="40dp"
         android:paddingBottom="25dp"
-        android:text="Health pool and stuff"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#0FBD17" />
@@ -35,6 +34,30 @@
         android:orientation="horizontal">
 
         <!-- Buttons for interacting with enemy will be added here -->
+
+        <Button
+            android:id="@+id/ENEMY_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Back"
+            android:text="Back"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/ENEMY_button_fight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Fight"
+            android:text="Fight"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
