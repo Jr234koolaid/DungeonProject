@@ -7,6 +7,6 @@
     <!-- Show border -->
     <stroke
         android:width="3dp"
-        android:color="@color/teal_700" />
+        android:color="@color/white" />
 
 </shape>

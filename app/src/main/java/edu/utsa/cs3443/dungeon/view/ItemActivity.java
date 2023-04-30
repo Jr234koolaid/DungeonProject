@@ -59,7 +59,7 @@ public class ItemActivity extends AppCompatActivity {
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)),
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)),
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)));
-        tableLayout.setBackground(AppCompatResources.getDrawable(this, R.drawable.map_border));
+        tableLayout.setBackground(AppCompatResources.getDrawable(this, R.drawable.entity_border));
 
         // Add item to layout
         LinearLayout mainLayout = findViewById(R.id.ITEM_main_layout);
