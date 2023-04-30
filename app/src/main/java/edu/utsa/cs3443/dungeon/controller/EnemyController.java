@@ -3,8 +3,12 @@ package edu.utsa.cs3443.dungeon.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import edu.utsa.cs3443.dungeon.model.Map;
 
 /**
  */
@@ -39,8 +43,8 @@ public class EnemyController implements View.OnClickListener
 
             case "Fight":
             {
-                m_activity.setResult(Activity.RESULT_OK);
-                m_activity.finish();
+                Toast toast = Toast.makeText(_view.getContext(), "Not implemented yet", Toast.LENGTH_SHORT);
+                toast.show();
 
             }break;
 
