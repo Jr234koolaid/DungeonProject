@@ -33,6 +33,30 @@
         android:orientation="horizontal">
 
         <!-- Buttons for interacting with enemy will be added here -->
+        
+        <Button
+            android:id="@+id/ENEMY_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Reject"
+            android:text="Back"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/ENEMY_button_fight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#140FBD17"
+            android:fontFamily="@font/courier_prime"
+            android:tag="Reject"
+            android:text="Fight"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

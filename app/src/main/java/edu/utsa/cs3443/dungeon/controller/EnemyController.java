@@ -37,6 +37,13 @@ public class EnemyController implements View.OnClickListener
 
             } break;
 
+            case "Fight":
+            {
+                m_activity.setResult(Activity.RESULT_OK);
+                m_activity.finish();
+
+            }break;
+
             default:
                 break;
         }
