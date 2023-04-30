@@ -1,3 +1,5 @@
+// Maps are 0 index based on both x and y
+
           |***|
 |*********|   |****************|
 |             |*|              |***

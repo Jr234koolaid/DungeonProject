@@ -57,7 +57,6 @@ public class MapActivity extends AppCompatActivity
         {
             AssetManager assetManager = getAssets();
 
-            // TODO (Juan): Change with intent
             // Get floor directories
             final String rootDirName = ("floor_" + String.valueOf(floorLevel));
             final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(mapLevel));
@@ -88,23 +87,23 @@ public class MapActivity extends AppCompatActivity
         MapController mapController = new MapController(this);
 
         // Get interact button
-        Button interactButton = findViewById(R.id.interact_button);
+        Button interactButton = findViewById(R.id.MAP_interact_button);
         interactButton.setOnClickListener(mapController);
 
         // Get left button
-        Button leftButton = findViewById(R.id.left_button);
+        Button leftButton = findViewById(R.id.MAP_left_button);
         leftButton.setOnClickListener(mapController);
 
         // Get right button
-        Button rightButton = findViewById(R.id.right_button);
+        Button rightButton = findViewById(R.id.MAP_right_button);
         rightButton.setOnClickListener(mapController);
 
         // Get up button
-        Button upButton = findViewById(R.id.up_button);
+        Button upButton = findViewById(R.id.MAP_up_button);
         upButton.setOnClickListener(mapController);
 
         // Get down button
-        Button downButton = findViewById(R.id.down_button);
+        Button downButton = findViewById(R.id.MAP_down_button);
         downButton.setOnClickListener(mapController);
     }
 

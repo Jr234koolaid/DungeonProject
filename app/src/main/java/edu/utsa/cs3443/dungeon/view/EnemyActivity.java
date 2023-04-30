@@ -53,7 +53,7 @@ public class EnemyActivity extends AppCompatActivity
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)),
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)),
                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5.f, metrics)));
-        tableLayout.setBackground(AppCompatResources.getDrawable(this, R.drawable.map_border));
+        tableLayout.setBackground(AppCompatResources.getDrawable(this, R.drawable.entity_border));
 
         // Add enemy to layout
         LinearLayout mainLayout = findViewById(R.id.ENEMY_main_layout);
