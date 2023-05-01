@@ -74,7 +74,7 @@ public class EnemyActivity extends AppCompatActivity
         int health = 10;
         int attack = 10;
         String line = "Health: " + attack + " \nAttack: " + health;
-        TextView textView = findViewById(R.id.ENEMY_text);
+        TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
 
         /*Button button = new Button(this);
