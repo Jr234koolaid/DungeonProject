@@ -356,8 +356,9 @@ public class Map extends TableLayout
             final int y = Integer.parseInt(infoTokens[1]);
             final char smallCharacter = infoTokens[2].charAt(0);
             final int maxHP = Integer.parseInt(infoTokens[3]);
+            final int attack = Integer.parseInt(infoTokens[4]);
 
-            Enemy enemy = new Enemy(name, maxHP, smallCharacter);
+            Enemy enemy = new Enemy(name, maxHP, smallCharacter, attack);
             enemy.setPositionX(x);
             enemy.setPositionY(y);
             enemy.loadLargeCharacter(enemyDir, _assetManager);
