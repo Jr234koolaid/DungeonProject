@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.controller.EnemyController;
@@ -70,10 +73,9 @@ public class EnemyActivity extends AppCompatActivity
         Button fightButton = findViewById(R.id.ENEMY_button_fight);
         fightButton.setOnClickListener(enemyController);
 
-        // TODO (Josh): Get the enemy attack and health from file.
-        int health = 10;
-        int attack = 10;
-        String line = "Health: " + attack + " \nAttack: " + health;
+        Map map = new Map(this);
+        ArrayList<Enemy> enemyList = map.getEnemyList();
+        String line = enemy.getName() + " \nHealth: " + enemy.getMaxHP() + " \nAttack: " + enemy.getAttack();
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
 
