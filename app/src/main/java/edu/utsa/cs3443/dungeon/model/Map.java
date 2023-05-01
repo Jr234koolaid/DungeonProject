@@ -106,17 +106,17 @@ public class Map extends TableLayout
     public void updatePlayer(final Player _player)
     {
         // Check if player can move
-        final int setX = _player.getPositionX();
-        final int setY = _player.getPositionY();
+        final int setX = _player.getX();
+        final int setY = _player.getY();
 
         if (m_data[setY][setX] == ' ')
         {
             // Replace player's previous spot with an empty space
-            m_data[m_player.getPositionY()][m_player.getPositionX()] = ' ';
+            m_data[m_player.getY()][m_player.getX()] = ' ';
 
             // Set player spot
-            m_player.setPositionX(setX);
-            m_player.setPositionY(setY);
+            m_player.setX(setX);
+            m_player.setY(setY);
 
             m_data[setY][setX] = m_player.getSmallCharacter();
         }
@@ -282,8 +282,8 @@ public class Map extends TableLayout
             final int y = Integer.parseInt(infoTokens[1]);
             final char smallCharacter = infoTokens[2].charAt(0);
             m_player = new Player(name, smallCharacter);
-            m_player.setPositionX(x);
-            m_player.setPositionY(y);
+            m_player.setX(x);
+            m_player.setY(y);
 
             // Replace character at player x and y with player
             m_data[y][x] = smallCharacter;
@@ -317,8 +317,8 @@ public class Map extends TableLayout
             final char smallCharacter = infoTokens[2].charAt(0);
 
             Door door = new Door(name, smallCharacter);
-            door.setPositionX(x);
-            door.setPositionY(y);
+            door.setX(x);
+            door.setY(y);
 
             // Add door to list
             m_doorList.add(door);
@@ -359,8 +359,8 @@ public class Map extends TableLayout
             final int attack = Integer.parseInt(infoTokens[4]);
 
             Enemy enemy = new Enemy(name, maxHP, smallCharacter, attack);
-            enemy.setPositionX(x);
-            enemy.setPositionY(y);
+            enemy.setX(x);
+            enemy.setY(y);
             enemy.loadLargeCharacter(enemyDir, _assetManager);
 
             // Add enemy to list
@@ -405,7 +405,8 @@ public class Map extends TableLayout
                 case "WEAPON":
                 {
                     WeaponGenerator generator = new WeaponGenerator("weapons/level_1", _assetManager);
-                    m_itemList.add(generator.generate());
+                    // TODO (Juan): Implement
+                    //m_itemList.add(generator.generate());
                 }
                 break;
                 case "ARMOR":
@@ -413,21 +414,6 @@ public class Map extends TableLayout
 
                 }
                 break;
-
-                default:
-                {
-                    final int attack = Integer.parseInt(infoTokens[3]);
-                    final int defense = Integer.parseInt(infoTokens[4]);
-                    final int speed = Integer.parseInt(infoTokens[5]);
-
-                    Item item = new Item(name, smallCharacter);
-                    item.setPositionX(x);
-                    item.setPositionY(y);
-                    item.loadLargeCharacter(itemDir, _assetManager);
-
-                    // Add item to list
-                    m_itemList.add(item);
-                }
             }
 
             // Replace character at item x and y with item
