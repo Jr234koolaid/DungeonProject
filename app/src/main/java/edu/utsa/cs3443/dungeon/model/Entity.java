@@ -35,6 +35,7 @@ public abstract class Entity implements Serializable
     protected int                   m_hp;               //
     protected int                   m_x;                //
     protected int                   m_y;                //
+    protected int                   m_attack;
 
     /**
      */
@@ -42,7 +43,9 @@ public abstract class Entity implements Serializable
             final String    _name,
             final int       _minHP,
             final int       _maxHP,
-            final char      _smallCharacter)
+            final char      _smallCharacter,
+            final int       _attack
+            )
     {
         m_name = _name;
         m_minHP = _minHP;
@@ -51,8 +54,12 @@ public abstract class Entity implements Serializable
         m_hp = m_maxHP;
         m_x = 0;
         m_y = 0;
+        m_attack = _attack;
     }
 
+    public final int getAttack() {
+        return m_attack;
+    }
     /**
      */
     public TableLayout getLayout()
@@ -114,6 +121,10 @@ public abstract class Entity implements Serializable
     public void setHP(final int _hp)
     {
         m_hp = _hp;
+    }
+
+    public void setAttack(final int _attack) {
+        m_attack = _attack;
     }
 
     /**

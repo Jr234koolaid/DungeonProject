@@ -8,7 +8,7 @@ public class Player extends Entity {
      */
     public Player(final String _name, final char _smallCharacter)
     {
-        super(_name, 0, 100, _smallCharacter);
+        super(_name, 0, 100, _smallCharacter, 10);
     }
 
     /**
@@ -16,7 +16,7 @@ public class Player extends Entity {
      */
     public Player(Player _player)
     {
-        super(_player.m_name, _player.m_minHP, _player.m_maxHP, _player.m_smallCharacter);
+        super(_player.m_name, _player.m_minHP, _player.m_maxHP, _player.m_smallCharacter, _player.m_attack);
 
         m_hp = _player.m_hp;
         m_x = _player.m_x;

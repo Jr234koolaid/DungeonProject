@@ -10,7 +10,7 @@ public class Door extends Entity
      */
     public Door(final String _name, final char _smallCharacter)
     {
-        super(_name, 0, 0, _smallCharacter);
+        super(_name, 0, 0, _smallCharacter, 0);
     }
 
 } // class Door
