@@ -73,9 +73,11 @@ public class EnemyActivity extends AppCompatActivity
         Button fightButton = findViewById(R.id.ENEMY_button_fight);
         fightButton.setOnClickListener(enemyController);
 
+
         Map map = new Map(this);
         ArrayList<Enemy> enemyList = map.getEnemyList();
         String line = enemy.getName() + " \nHealth: " + enemy.getMaxHP() + " \nAttack: " + enemy.getAttack();
+
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
 
