@@ -31,6 +31,11 @@ public class Weapon extends Item {
             return damage;
     }
 
+    @Override
+    public String[] getStats() {
+        return new String[0];
+    }
+
     //TODO (R): create modifiers (maybe using EntityGenerator)
     /*
     public void applyModifier(String modifierName, int damageChange, float critChange, float accuracyChange) {

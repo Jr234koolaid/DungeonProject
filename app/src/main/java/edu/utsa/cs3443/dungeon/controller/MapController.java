@@ -90,25 +90,25 @@ public class MapController implements View.OnClickListener
         {
             // Move player left
             case "Left":
-                player.setPositionX(player.getPositionX() - 1);
+                player.setX(player.getX() - 1);
                 map.updatePlayer(player);
                 break;
 
             // Move player right
             case "Right":
-                player.setPositionX(player.getPositionX() + 1);
+                player.setX(player.getX() + 1);
                 map.updatePlayer(player);
                 break;
 
             // Move player up
             case "Up":
-                player.setPositionY(player.getPositionY() - 1);
+                player.setY(player.getY() - 1);
                 map.updatePlayer(player);
                 break;
 
             // Move player down
             case "Down":
-                player.setPositionY(player.getPositionY() + 1);
+                player.setY(player.getY() + 1);
                 map.updatePlayer(player);
                 break;
 
