@@ -104,14 +104,14 @@ public abstract class Entity implements Serializable
 
     /**
      */
-    public final int getPositionX()
+    public final int getX()
     {
         return m_x;
     }
 
     /**
      */
-    public final int getPositionY()
+    public final int getY()
     {
         return m_y;
     }
@@ -129,14 +129,14 @@ public abstract class Entity implements Serializable
 
     /**
      */
-    public void setPositionX(final int _x)
+    public void setX(final int _x)
     {
         m_x = _x;
     }
 
     /**
      */
-    public void setPositionY(final int _y)
+    public void setY(final int _y)
     {
         m_y = _y;
     }

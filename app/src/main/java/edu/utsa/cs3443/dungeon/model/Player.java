@@ -23,4 +23,13 @@ public class Player extends Entity {
         m_y = _player.m_y;
     }
 
+    /**
+     */
+    public void addItem(final Item _item)
+    {
+        final String[] itemStats = _item.getStats();
+
+        // TODO: Check item
+    }
+
 } // class Player

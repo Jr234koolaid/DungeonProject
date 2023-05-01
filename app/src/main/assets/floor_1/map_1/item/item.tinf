@@ -5,4 +5,5 @@
 // TODO (Juan): NOTE - If we update params here, we have to update them also in the Map class
 
 Cap{ 7, 12, b, 0, 10, 2 }
-Pen{ 31, 4, !, 2, 0, 4 }
+//Pen{ 31, 4, !, 2, 0, 4 }
+WEAPON{ 31, 4, $ }

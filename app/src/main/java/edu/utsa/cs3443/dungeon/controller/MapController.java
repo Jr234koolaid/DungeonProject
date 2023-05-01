@@ -55,11 +55,23 @@ public class MapController implements View.OnClickListener
                         // Get map
                         Map map = m_activity.findViewById(R.id.MAP_map);
 
-                        // TODO (Juan): Handle the Intent
+                        // Check if we remove item
                         Intent itemData = result.getData();
 
-                        // Generate map layout
-                        map.generate();
+                        final boolean remove = itemData.getBooleanExtra("EXTRA_ITEM_POP_REMOVE", false);
+                        if (remove)
+                        {
+                            // Remove item
+                            final Item item = itemData.getSerializableExtra("EXTRA_ITEM_POP_ITEM", Item.class);
+                            map.removeItem(item);
+
+                            // Generate map layout
+                            map.generate();
+
+                            // Get player
+                            Player player = map.getPlayer();
+                            player.addItem(item);
+                        }
                     }
                 });
     }
