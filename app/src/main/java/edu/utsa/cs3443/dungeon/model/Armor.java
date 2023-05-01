@@ -30,4 +30,8 @@ public class Armor extends Item{
         return dodge;
     }
 
+    @Override
+    public String[] getStats() {
+        return new String[0];
+    }
 }
