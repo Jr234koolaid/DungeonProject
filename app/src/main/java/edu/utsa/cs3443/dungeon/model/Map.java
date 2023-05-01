@@ -398,17 +398,37 @@ public class Map extends TableLayout
             final int x = Integer.parseInt(infoTokens[0]);
             final int y = Integer.parseInt(infoTokens[1]);
             final char smallCharacter = infoTokens[2].charAt(0);
-            final int attack = Integer.parseInt(infoTokens[3]);
-            final int defense = Integer.parseInt(infoTokens[4]);
-            final int speed = Integer.parseInt(infoTokens[5]);
 
-            Item item = new Item(name, smallCharacter);
-            item.setPositionX(x);
-            item.setPositionY(y);
-            item.loadLargeCharacter(itemDir, _assetManager);
+            // Generate items
+            switch(name)
+            {
+                case "WEAPON":
+                {
+                    WeaponGenerator generator = new WeaponGenerator("weapons/level_1", _assetManager);
+                    m_itemList.add(generator.generate());
+                }
+                break;
+                case "ARMOR":
+                {
 
-            // Add item to list
-            m_itemList.add(item);
+                }
+                break;
+
+                default:
+                {
+                    final int attack = Integer.parseInt(infoTokens[3]);
+                    final int defense = Integer.parseInt(infoTokens[4]);
+                    final int speed = Integer.parseInt(infoTokens[5]);
+
+                    Item item = new Item(name, smallCharacter);
+                    item.setPositionX(x);
+                    item.setPositionY(y);
+                    item.loadLargeCharacter(itemDir, _assetManager);
+
+                    // Add item to list
+                    m_itemList.add(item);
+                }
+            }
 
             // Replace character at item x and y with item
             m_data[y][x] = smallCharacter;

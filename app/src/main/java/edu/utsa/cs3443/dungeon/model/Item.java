@@ -2,7 +2,7 @@ package edu.utsa.cs3443.dungeon.model;
 
 /**
  */
-public class Item extends Entity
+public abstract class Item extends Entity
 {
     /**
      */
@@ -10,5 +10,9 @@ public class Item extends Entity
     {
         super(_name, 0, 0, _smallCharacter, 0);
     }
+
+    /**
+     */
+    public abstract String[] getStats();
 
 } // class Item
