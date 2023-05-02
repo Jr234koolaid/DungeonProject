@@ -4,6 +4,6 @@
 // TODO (Juan): We could add to this if we want
 // TODO (Juan): NOTE - If we update params here, we have to update them also in the Map class
 
-Cap{ 7, 12, b, 0, 10, 2 }
+ARMOR{ 7, 12 }
 //Pen{ 31, 4, !, 2, 0, 4 }
-WEAPON{ 31, 4, $ }
+WEAPON{ 31, 4 }
