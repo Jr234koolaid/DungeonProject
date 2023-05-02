@@ -1,7 +1,5 @@
 package edu.utsa.cs3443.dungeon.model;
 
-import android.content.Context;
-
 /**
  */
 public class Enemy extends Entity
