@@ -22,16 +22,16 @@ import edu.utsa.cs3443.dungeon.R;
 public abstract class Entity implements Serializable
 {
     // Class variable
-    protected static final int      MAX_SPRITE_WIDTH = 30;  //
-    protected static final int      MAX_SPRITE_HEIGHT = 15; //
+    public static final int      MAX_SPRITE_WIDTH = 30;  //
+    public static final int      MAX_SPRITE_HEIGHT = 15; //
 
     // Member variables
-    protected TableLayout           m_layout;           //
+    //protected TableLayout           m_layout;           //
     protected final String          m_name;             //
     protected final int             m_minHP;            //
     protected final int             m_maxHP;            //
     protected final char            m_smallCharacter;   //
-    protected char[][]              m_largeCharacter;   //
+    public char[][]              m_largeCharacter;   //
     protected int                   m_hp;               //
     protected int                   m_x;                //
     protected int                   m_y;                //
@@ -62,10 +62,12 @@ public abstract class Entity implements Serializable
     }
     /**
      */
+    /*
     public TableLayout getLayout()
     {
         return m_layout;
     }
+    */
 
     /**
      */
@@ -150,8 +152,7 @@ public abstract class Entity implements Serializable
                 (m_y == _entity.m_y) && ((m_x == (_entity.m_x - 1)) || (m_x == (_entity.m_x + 1))));
     }
 
-    /**
-     */
+    /*
     public void generate(Context _context)
     {
         // Create new table layout
@@ -194,6 +195,7 @@ public abstract class Entity implements Serializable
             m_layout.addView(row);
         }
     }
+    */
 
     /**
      */
