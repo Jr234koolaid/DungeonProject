@@ -31,7 +31,7 @@ public abstract class Entity implements Serializable
     protected final int             m_minHP;            //
     protected final int             m_maxHP;            //
     protected final char            m_smallCharacter;   //
-    public char[][]              m_largeCharacter;   //
+    protected char[][]              m_largeCharacter;   //
     protected int                   m_hp;               //
     protected int                   m_x;                //
     protected int                   m_y;                //
@@ -44,8 +44,7 @@ public abstract class Entity implements Serializable
             final int       _minHP,
             final int       _maxHP,
             final char      _smallCharacter,
-            final int       _attack
-            )
+            final int       _attack)
     {
         m_name = _name;
         m_minHP = _minHP;
@@ -95,6 +94,13 @@ public abstract class Entity implements Serializable
     public final char getSmallCharacter()
     {
         return m_smallCharacter;
+    }
+
+    /**
+     */
+    public final char[][]getLargeCharacter()
+    {
+        return m_largeCharacter;
     }
 
     /**

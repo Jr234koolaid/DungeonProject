@@ -4,7 +4,6 @@ package edu.utsa.cs3443.dungeon.model;
  */
 public class Enemy extends Entity
 {
-    private int _attack;
     /**
      * Defines the Entity class and relevant methods
      * @param _maxHP max hp
@@ -12,7 +11,6 @@ public class Enemy extends Entity
     public Enemy(final String _name, final int _maxHP, final char _smallCharacter, int _attack)
     {
         super(_name, 0, _maxHP, _smallCharacter, _attack);
-        this._attack = _attack;
     }
 
     /**
