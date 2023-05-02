@@ -135,6 +135,7 @@ public class MapController implements View.OnClickListener
 
                         Intent intent = new Intent(m_activity, EnemyActivity.class);
                         intent.putExtra("EXTRA_ENEMY_PUSH_ENEMY", enemy);
+                        intent.putExtra("EXTRA_PLAYER_PUSH_PLAYER", player);
 
                         // Launch new activity
                         m_enemyActivityStart.launch(intent);

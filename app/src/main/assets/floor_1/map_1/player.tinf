@@ -1,4 +1,4 @@
 // Coordinates are 0 index based on both x and y
 // Layout:      PLAYER_NAME{ X_COORD, Y_COORD, SMALL_CHARACTER }
 
-Player{ 14, 13, i }
+Player{ 14, 13, i, 100, 10 }

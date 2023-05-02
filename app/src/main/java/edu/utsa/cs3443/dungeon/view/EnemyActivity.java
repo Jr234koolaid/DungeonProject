@@ -14,13 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.content.Context;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.controller.EnemyController;
 import edu.utsa.cs3443.dungeon.model.Enemy;
+import edu.utsa.cs3443.dungeon.model.Player;
 import edu.utsa.cs3443.dungeon.model.Map;
 
 /**
@@ -69,14 +69,16 @@ public class EnemyActivity extends AppCompatActivity
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(enemy.m_largeCharacter[i][j]));
 
-                // Add columns to row
+                /*Player player = intent.getSerializableExtra("EXTRA_PLAYER_PUSH_PLAYER", Player.class);
+        player.generate(this);*/
+
+        // Add columns to row
                 row.addView(textView);
             }
 
             // Add row to table
             tableLayout.addView(row);
         }
-
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
@@ -97,22 +99,20 @@ public class EnemyActivity extends AppCompatActivity
 
         LinearLayout buttonLayout = findViewById(R.id.ENEMY_button_layout);
 
-        // TODO (Juan): REMOVE or finish
         EnemyController enemyController = new EnemyController(this);
 
         Button backButton = findViewById(R.id.ENEMY_button_back);
         backButton.setOnClickListener(enemyController);
-
         Button fightButton = findViewById(R.id.ENEMY_button_fight);
         fightButton.setOnClickListener(enemyController);
 
-
-        Map map = new Map(this);
-        ArrayList<Enemy> enemyList = map.getEnemyList();
         String line = enemy.getName() + " \nHealth: " + enemy.getMaxHP() + " \nAttack: " + enemy.getAttack();
+        String line1 = "Player" + " \nHealth: " + /*player.getMaxHP() +*/ " \nAttack: ";
 
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
+        TextView textView1 = findViewById(R.id.PLAYER_info_text);
+        textView1.setText(line1);
 
         /*Button button = new Button(this);
         button.setTag(String.valueOf("Back"));

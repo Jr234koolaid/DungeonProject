@@ -281,7 +281,10 @@ public class Map extends TableLayout
             final int x = Integer.parseInt(infoTokens[0]);
             final int y = Integer.parseInt(infoTokens[1]);
             final char smallCharacter = infoTokens[2].charAt(0);
-            m_player = new Player(name, smallCharacter);
+            final int maxHP = Integer.parseInt(infoTokens[3]);
+            final int attack = Integer.parseInt(infoTokens[4]);
+
+            m_player = new Player(name, maxHP, smallCharacter, attack);
             m_player.setX(x);
             m_player.setY(y);
 
