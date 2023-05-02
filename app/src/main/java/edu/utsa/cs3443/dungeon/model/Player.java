@@ -4,20 +4,17 @@ package edu.utsa.cs3443.dungeon.model;
  */
 public class Player extends Entity
 {
-
-    int _attack;
     /**
      */
     public Player(final String _name, final int _maxHP, final char _smallCharacter, int _attack)
     {
         super(_name, 0, _maxHP, _smallCharacter, _attack);
-        this._attack = _attack;
     }
 
     /**
      * Copy Constructor
      */
-    public Player(Entity _player)
+    public Player(Player _player)
     {
         super(_player.m_name, _player.m_minHP, _player.m_maxHP, _player.m_smallCharacter, _player.m_attack);
 

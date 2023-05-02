@@ -1,10 +1,8 @@
 package edu.utsa.cs3443.dungeon.model;
 
-import java.io.Serializable;
-
 /**
  */
-public abstract class Item extends Entity implements Serializable
+public abstract class Item extends Entity
 {
     /**
      */
