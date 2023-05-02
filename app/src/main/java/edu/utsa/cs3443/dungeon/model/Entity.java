@@ -198,14 +198,14 @@ public abstract class Entity implements Serializable
     /**
      */
     public void loadLargeCharacter(
-            final String    _root,
+            final String    characterFilePath,
             AssetManager    _assetManager) throws IOException
     {
         // Allocate large character
         m_largeCharacter = new char[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];
 
         // Go through large character data file
-        TextParser parser = new TextParser((_root + "/" + "large_character.tett"), _assetManager);
+        TextParser parser = new TextParser(characterFilePath, _assetManager);
 
         // Get large character data
         int sizeY = 0;
