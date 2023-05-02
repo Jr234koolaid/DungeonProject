@@ -364,7 +364,7 @@ public class Map extends TableLayout
             Enemy enemy = new Enemy(name, maxHP, smallCharacter, attack);
             enemy.setX(x);
             enemy.setY(y);
-            enemy.loadLargeCharacter(enemyDir, _assetManager);
+            enemy.loadLargeCharacter((enemyDir + "/large_character.tett"), _assetManager);
 
             // Add enemy to list
             m_enemyList.add(enemy);
@@ -379,13 +379,17 @@ public class Map extends TableLayout
 
     /**
      */
-    public void loadItems(final String _root, AssetManager _assetManager) throws IOException
+    public void loadItems(final String mapDir, final String armorDir, final String weaponDir, AssetManager _assetManager) throws IOException
     {
         // Clear item list
         m_itemList.clear();
 
+        // Create the generators
+        WeaponGenerator wGen = new WeaponGenerator(weaponDir, _assetManager);
+        ArmorGenerator aGen = new ArmorGenerator(armorDir, _assetManager);
+
         // Go through item file
-        TextParser parser = new TextParser((_root + "/" + "item.tinf"), _assetManager);
+        TextParser parser = new TextParser((mapDir + "/" + "item.tinf"), _assetManager);
 
         // Get item info
         String line = null;
@@ -395,32 +399,36 @@ public class Map extends TableLayout
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
-            final String itemDir = (_root + "/" + name.toLowerCase());
+            //final String itemDir = (_root + "/" + name.toLowerCase());
 
             // Create Item
             final int x = Integer.parseInt(infoTokens[0]);
             final int y = Integer.parseInt(infoTokens[1]);
-            final char smallCharacter = infoTokens[2].charAt(0);
+            //final char smallCharacter = infoTokens[2].charAt(0);
 
             // Generate items
             switch(name)
             {
                 case "WEAPON":
                 {
-                    WeaponGenerator generator = new WeaponGenerator("weapons/level_1", _assetManager);
                     // TODO (Juan): Implement
-                    //m_itemList.add(generator.generate());
+                    m_itemList.add((Item)wGen.generate());
                 }
                 break;
                 case "ARMOR":
                 {
-
+                    // TODO (Juan): Implement
+                    m_itemList.add((Item)aGen.generate());
                 }
                 break;
             }
 
             // Replace character at item x and y with item
-            m_data[y][x] = smallCharacter;
+            m_data[y][x] = m_itemList.get(m_itemList.size()-1).getSmallCharacter();
+            // set the X and Y variables in the Item object
+            m_itemList.get(m_itemList.size()-1).setX(x);
+            m_itemList.get(m_itemList.size()-1).setY(y);
+
         }
 
         // Close parser

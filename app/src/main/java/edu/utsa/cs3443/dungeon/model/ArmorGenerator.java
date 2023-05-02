@@ -18,17 +18,26 @@ public class ArmorGenerator extends EntityGenerator{
         Scanner sc;
         String[] strs;
         ArrayList<Armor> retList = new ArrayList<>();
+        Armor tArmor;
 
         try {
-            sc = new Scanner(aM.open(entityDir));
+            sc = new Scanner(aM.open(entityDir + "/list.tinf"));
         } catch (IOException e) {
             return null; //TODO: handle IOException
         }
 
         while (sc.hasNextLine()){
             strs = sc.nextLine().split(",");
-            retList.add(new Armor(strs[0], strs[1], Integer.parseInt(strs[2]), Float.parseFloat(strs[3])));
-            /*                     Name,   Type     Defense,                   Dodge%                    */
+            //                 Name,    Type     Defense,                   Dodge%
+            tArmor = new Armor(strs[0], strs[1], Integer.parseInt(strs[2]), Float.parseFloat(strs[3]));
+            try {
+                tArmor.loadLargeCharacter(entityDir + "/" + tArmor.getName() + ".teff", aM);
+            } catch (IOException e) {
+                //TODO: handle IOException
+            }
+            retList.add(tArmor);
+
+
         }
 
         return retList;
