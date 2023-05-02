@@ -61,7 +61,8 @@ public class MapActivity extends AppCompatActivity
             final String rootDirName = ("floor_" + String.valueOf(floorLevel));
             final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(mapLevel));
             final String enemyDirName = (mapDirName + "/" + "enemy");
-            final String itemDirName = (mapDirName + "/" + "item");
+            final String weaponDirName = ("weapons" + "/" + "level" + String.valueOf(floorLevel));  //NOTE: may want to change these to mapLevel
+            final String armorDirName = ("armor" + "/" + "level" + String.valueOf(floorLevel));     //      if we don't have multiple floors  -R
 
             // Load all map data
             map.loadInfo(mapDirName, assetManager);
@@ -69,7 +70,7 @@ public class MapActivity extends AppCompatActivity
             map.loadPlayer(mapDirName, assetManager);
             map.loadDoors(mapDirName, assetManager);
             map.loadEnemies(enemyDirName, assetManager);
-            map.loadItems(itemDirName, assetManager);
+            map.loadItems(mapDirName, armorDirName, weaponDirName, assetManager);
         }
         catch (IOException _e)
         {
