@@ -15,7 +15,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import edu.utsa.cs3443.dungeon.R;
@@ -23,7 +22,6 @@ import edu.utsa.cs3443.dungeon.controller.EnemyController;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Entity;
 import edu.utsa.cs3443.dungeon.model.Player;
-import edu.utsa.cs3443.dungeon.model.Map;
 
 /**
  */

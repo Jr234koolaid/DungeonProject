@@ -17,12 +17,8 @@ import android.widget.TextView;
 
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.controller.ItemController;
-import edu.utsa.cs3443.dungeon.model.Armor;
-import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Entity;
 import edu.utsa.cs3443.dungeon.model.Item;
-import edu.utsa.cs3443.dungeon.model.Player;
-import edu.utsa.cs3443.dungeon.model.Weapon;
 
 /**
  */

@@ -11,9 +11,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import edu.utsa.cs3443.dungeon.R;
 

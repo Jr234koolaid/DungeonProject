@@ -1,7 +1,6 @@
 package edu.utsa.cs3443.dungeon.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -12,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 import edu.utsa.cs3443.dungeon.R;
-import edu.utsa.cs3443.dungeon.model.Map;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Player;
-import edu.utsa.cs3443.dungeon.view.EnemyActivity;
 
 /**
  */
