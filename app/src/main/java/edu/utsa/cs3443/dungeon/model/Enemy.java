@@ -1,5 +1,7 @@
 package edu.utsa.cs3443.dungeon.model;
 
+import java.util.Random;
+
 import edu.utsa.cs3443.dungeon.model.Map;
 import edu.utsa.cs3443.dungeon.model.Player;
 
@@ -36,7 +38,7 @@ public class Enemy extends Entity
         int maxHP = 0;
         char smallCharacter = 0;
         int attack = 0;
-        Player player = new Player(name, maxHP, smallCharacter, attack);
+        Player player = Player.getInstance();//new Player(name, maxHP, smallCharacter, attack);
         Enemy enemy = new Enemy(name, maxHP, smallCharacter, attack);
         int playerHP = player.getMaxHP();
         int enemyHP = enemy.getMaxHP();
@@ -45,5 +47,21 @@ public class Enemy extends Entity
             enemyHP -= enemy.getAttack();
         }
     }
+
+
+    public int takeDamage(int attack){
+        setHP(getHP()-attack);
+        return attack; //placeholder probably
+        //TODO: maybe make this more interesting
+    }
+
+    public int attack(){
+        Random r = new Random();
+        if (r.nextFloat() > 0.70)
+            return 0;
+        else
+            return m_attack;
+    }
+
 
 } // class Enemy

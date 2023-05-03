@@ -89,7 +89,7 @@ public class ItemActivity extends AppCompatActivity {
                 TextView textView = new TextView(this);
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
-                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
                 textView.setTextColor(this.getColorStateList(R.color.teal_700));
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(itemCharacter[i][j]));

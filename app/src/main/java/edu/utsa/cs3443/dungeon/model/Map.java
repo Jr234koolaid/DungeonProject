@@ -103,11 +103,11 @@ public class Map extends TableLayout
 
     /*
      */
-    public void updatePlayer(final Player _player)
+    public void updatePlayer(final int setX, final int setY)
     {
         // Check if player can move
-        final int setX = _player.getX();
-        final int setY = _player.getY();
+        //final int setX = _player.getX();
+        //final int setY = _player.getY();
 
         if (m_data[setY][setX] == ' ')
         {
@@ -133,7 +133,11 @@ public class Map extends TableLayout
      */
     public void removeEnemy(final Enemy _enemy)
     {
-        // TODO (Juan): Implement
+        // TODO (Juan): Implement correctly
+        final int setX = _enemy.getX();
+        final int setY = _enemy.getY();
+
+        m_data[setY][setX] = ' ';
     }
 
     /**
@@ -175,7 +179,7 @@ public class Map extends TableLayout
                 TextView textView = new TextView(context);
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
-                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
                 textView.setTextColor(context.getColorStateList(R.color.teal_700));
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(m_data[i][j]));
@@ -284,12 +288,12 @@ public class Map extends TableLayout
             final int maxHP = Integer.parseInt(infoTokens[3]);
             final int attack = Integer.parseInt(infoTokens[4]);
 
-            m_player = new Player(name, maxHP, smallCharacter, attack);
+            m_player = Player.getInstance();//new Player(name, maxHP, smallCharacter, attack);
             m_player.setX(x);
             m_player.setY(y);
 
             // Replace character at player x and y with player
-            m_data[y][x] = smallCharacter;
+            m_data[y][x] = m_player.getSmallCharacter();
         }
 
         // Close the parser

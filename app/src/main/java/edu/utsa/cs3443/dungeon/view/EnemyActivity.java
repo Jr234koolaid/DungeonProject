@@ -28,6 +28,9 @@ import edu.utsa.cs3443.dungeon.model.Map;
  */
 public class EnemyActivity extends AppCompatActivity
 {
+    public static final int RESULT_WIN = 420;
+    public static final int RESULT_LOSE = 69;
+
     /**
      */
     @Override
@@ -70,7 +73,7 @@ public class EnemyActivity extends AppCompatActivity
                 TextView textView = new TextView(this);
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
-                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
                 textView.setTextColor(this.getColorStateList(R.color.teal_700));
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(enemyCharacter[i][j]));
@@ -102,20 +105,24 @@ public class EnemyActivity extends AppCompatActivity
 
         LinearLayout buttonLayout = findViewById(R.id.ENEMY_button_layout);
 
-        EnemyController enemyController = new EnemyController(this);
+        EnemyController enemyController = new EnemyController(this, enemy);
 
         Button backButton = findViewById(R.id.ENEMY_button_back);
         backButton.setOnClickListener(enemyController);
         Button fightButton = findViewById(R.id.ENEMY_button_fight);
         fightButton.setOnClickListener(enemyController);
 
-        String line = enemy.getName() + " \nHealth: " + enemy.getMaxHP() + " \nAttack: " + enemy.getAttack();
-        String line1 = "Player" + " \nHealth: " + player.getMaxHP() + " \nAttack: " + player.getAttack();
+        /*
+        String line = enemy.getName() + " \nHealth: " + enemy.getHP();// + " \nAttack: " + enemy.getAttack();
+        String line1 = "Player" + " \nHealth: " + player.getHP();// + " \nAttack: " + player.getAttack();
 
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
         TextView textView1 = findViewById(R.id.PLAYER_info_text);
         textView1.setText(line1);
+         */
+        displayEnemyAndPlayer(enemy, player);
+
 
         /*Button button = new Button(this);
         button.setTag(String.valueOf("Back"));
@@ -133,5 +140,16 @@ public class EnemyActivity extends AppCompatActivity
         // Add button to button layout
         buttonLayout.addView(button);*/
     }
+
+    public void displayEnemyAndPlayer(Enemy enemy, Player player){
+        String line = enemy.getName() + " \nHealth: " + enemy.getHP();// + " \nAttack: " + enemy.getAttack();
+        String line1 = "Player" + " \nHealth: " + player.getHP();// + " \nAttack: " + player.getAttack();
+
+        TextView textView = findViewById(R.id.ENEMY_info_text);
+        textView.setText(line);
+        TextView textView1 = findViewById(R.id.PLAYER_info_text);
+        textView1.setText(line1);
+    }
+
 
 } // class EnemyActivity
