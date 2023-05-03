@@ -80,8 +80,7 @@ public class MapController implements View.OnClickListener
                             map.generate();
 
                             // Get player
-                            Player player = map.getPlayer();
-                            player.addItem(item);
+                            Player.getInstance().addItem(item);
                         }
                     }
                 });

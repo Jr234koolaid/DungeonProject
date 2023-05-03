@@ -61,8 +61,8 @@ public class MapActivity extends AppCompatActivity
             final String rootDirName = ("floor_" + String.valueOf(floorLevel));
             final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(mapLevel));
             final String enemyDirName = (mapDirName + "/" + "enemy");
-            final String weaponDirName = ("weapons" + "/" + "level" + String.valueOf(floorLevel));  //NOTE: may want to change these to mapLevel
-            final String armorDirName = ("armor" + "/" + "level" + String.valueOf(floorLevel));     //      if we don't have multiple floors  -R
+            final String weaponDirName = ("weapons" + "/" + "level" + mapLevel);  //NOTE: will want to change these to floorLevel
+            final String armorDirName = ("armor" + "/" + "level" + mapLevel);     //      if we have multiple floors  -R
 
             // Load all map data
             map.loadInfo(mapDirName, assetManager);
