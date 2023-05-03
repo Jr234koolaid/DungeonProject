@@ -32,8 +32,10 @@ public class Enemy extends Entity
         m_attack = _enemy.m_attack;
     }
 
+    /*
     //Fight method
-    public static void enemyFight() {
+    public static void enemyFight()
+    {
         String name = null;
         int maxHP = 0;
         char smallCharacter = 0;
@@ -47,21 +49,24 @@ public class Enemy extends Entity
             enemyHP -= enemy.getAttack();
         }
     }
+     */
 
-
-    public int takeDamage(int attack){
-        setHP(getHP()-attack);
-        return attack; //placeholder probably
+    /**
+    public final int takeDamage(final int _attack)
+    {
+        m_hp -= _attack;
+        return _attack; //placeholder probably
         //TODO: maybe make this more interesting
     }
+     */
 
-    public int attack(){
+    public int attack()
+    {
         Random r = new Random();
         if (r.nextFloat() > 0.70)
             return 0;
         else
             return m_attack;
     }
-
 
 } // class Enemy
