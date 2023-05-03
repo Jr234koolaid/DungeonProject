@@ -16,6 +16,7 @@ public class Weapon extends Item {
      */
     public Weapon(String name, int damage, float crit) {
         super(name, '$'); //note: I think all weapons and armor should be the same symbol on the map. -R
+        this.type = "WEAPON";
         this.damage = damage;
         this.crit = crit;
         accuracy = (float) 0.8;
@@ -32,8 +33,8 @@ public class Weapon extends Item {
     }
 
     @Override
-    public String[] getStats() {
-        return new String[0];
+    public String getType() {
+        return type;
     }
 
     //TODO (R): create modifiers (maybe using EntityGenerator)

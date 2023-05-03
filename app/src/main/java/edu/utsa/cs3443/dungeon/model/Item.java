@@ -4,6 +4,8 @@ package edu.utsa.cs3443.dungeon.model;
  */
 public abstract class Item extends Entity
 {
+    protected String type;
+
     /**
      */
     public Item(final String _name, final char _smallCharacter)
@@ -13,6 +15,6 @@ public abstract class Item extends Entity
 
     /**
      */
-    public abstract String[] getStats();
+    public abstract String getType();
 
 } // class Item
