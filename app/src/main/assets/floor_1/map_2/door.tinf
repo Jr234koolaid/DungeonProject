@@ -1,6 +1,6 @@
 // Coordinates are 0 index based on both x and y
 // Layout:      DOOR_NAME{ X_COORD, Y_COORD, SMALL_CHARACTER }
 
-Door{ 34, 1, # }
-Door{ 34, 2, # }
-Door{ 34, 3, # }
+Door{ 29, 3, # }
+//Door{ 34, 2, # }
+//Door{ 34, 3, # }

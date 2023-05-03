@@ -5,4 +5,4 @@
 // TODO (Juan): NOTE - If we update params here, we have to update them also in the Map class
 
 ARMOR{ 7, 12 }
-WEAPON{ 31, 4 }
+WEAPON{ 28, 4 }

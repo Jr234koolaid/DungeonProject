@@ -41,10 +41,10 @@ public class WeaponGenerator extends EntityGenerator{
         return retList;
     }
 
-    public Weapon generate() {
+    public Weapon generate()
+    {
         Random r = new Random();
-        return entityList.get(r.nextInt(entityList.size()));
+        return new Weapon(entityList.get(r.nextInt(entityList.size())));
     }
-
 
 }
