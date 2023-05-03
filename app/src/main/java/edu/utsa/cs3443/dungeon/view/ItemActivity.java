@@ -95,6 +95,9 @@ public class ItemActivity extends AppCompatActivity {
         // TODO (Juan): REMOVE or finish
         ItemController itemController = new ItemController(this);
 
+        TextView prompt = findViewById(R.id.ITEM_info_text);
+        prompt.setText(item.toString());
+
         Button acceptButton = findViewById(R.id.ITEM_button_accept);
         acceptButton.setOnClickListener(itemController);
 

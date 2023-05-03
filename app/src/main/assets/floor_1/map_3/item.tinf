@@ -6,3 +6,4 @@
 
 ARMOR{ 14, 2 }
 WEAPON{ 13, 12 }
+HEALING{ 7,8 }
