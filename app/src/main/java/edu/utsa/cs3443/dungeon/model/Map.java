@@ -412,13 +412,13 @@ public class Map extends TableLayout
                 case "WEAPON":
                 {
                     // TODO (Juan): Implement
-                    m_itemList.add((Item)wGen.generate());
+                    m_itemList.add(wGen.generate());
                 }
                 break;
                 case "ARMOR":
                 {
                     // TODO (Juan): Implement
-                    m_itemList.add((Item)aGen.generate());
+                    m_itemList.add(aGen.generate());
                 }
                 break;
             }

@@ -28,7 +28,6 @@ public class Player extends Entity
      */
     public void addItem(final Item _item)
     {
-        final String[] itemStats = _item.getStats();
 
         // TODO: Check item
     }

@@ -147,8 +147,14 @@ public class MapController implements View.OnClickListener
                     if (player.canInteract(item))
                     {
                         System.out.println("Interacting with item: " + item.getName());
+                        for (char[] chArr : item.getLargeCharacter()){
+                            for (char ch : chArr)
+                                System.out.print(ch);
+                            System.out.println();
+                        }
 
                         Intent intent = new Intent(m_activity, ItemActivity.class);
+                        intent.putExtra("EXTRA_ITEM_PUSH_TYPE", item.getType());
                         intent.putExtra("EXTRA_ITEM_PUSH_ITEM", item);
 
                         // Launch new activity
