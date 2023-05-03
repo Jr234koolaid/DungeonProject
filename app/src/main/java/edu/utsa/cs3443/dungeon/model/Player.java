@@ -12,11 +12,14 @@ public class Player extends Entity
     private static Player instance = null;
 
     private Weapon equippedWeapon;
+    private Armor[] equippedArmor;
 
 
     private Player(final String _name, final int _maxHP, final char _smallCharacter)
     {
         super(_name, 0, _maxHP, _smallCharacter, 0);
+        equippedWeapon = new Weapon("Stick", 3, (float)0.1);
+        equippedArmor = new Armor[4];
     }
 
     /**
@@ -45,14 +48,34 @@ public class Player extends Entity
 
     /**
      */
-    public void addItem(final Item _item)
+    public void addItem(final Item item)
     {
+        switch (item.getType()){
+            case "WEAPON":
+                equippedWeapon = (Weapon)item;
+                break;
+            case "ARMOR":
+                switch(((Armor)item).getSlot()){
+                    case "head":
+                        equippedArmor[0] = (Armor)item; break;
+                    case "torso":
+                        equippedArmor[1] = (Armor)item; break;
+                    case "legs":
+                        equippedArmor[2] = (Armor)item; break;
+                    case "feet":
+                        equippedArmor[3] = (Armor)item; break;
+                    default:
+                        //idk
+                }
+                break;
+            default:
+                //idk
+        }
 
-        // TODO: Check item
     }
 
     public int takeDamage(int attack){
-        int defense = getDefense(); //if -1, then dodge
+        int defense = defend(); //if -1, then dodge
         int ret = attack - defense;
         if (defense == -1) {
             return -1;
@@ -66,22 +89,33 @@ public class Player extends Entity
         }
     }
 
-    public int getDefense(){
+    public int defend(){
         Random r = new Random();
-        if (r.nextFloat() < 0.2)
+        if (r.nextFloat() < getTotalDodge())
             return -1;
         else
-            return getTotalArmorDefense();
+            return getTotalDefense();
     }
 
-    public int getTotalArmorDefense(){
-        //TODO: count up all the defense of all equipped armor
-        return 2;
+    public int getTotalDefense(){
+        int ret = 0;
+        for (Armor a : equippedArmor){
+            if (a != null)
+                ret += a.getDefense();
+        }
+        return ret;
+    }
+
+    public float getTotalDodge(){
+        float ret = (float)0.20;
+        for (Armor a : equippedArmor){
+            if (a != null)
+                ret += a.getDodge();
+        }
+        return ret;
     }
 
     public Weapon getWeapon(){
-        if (equippedWeapon == null)
-            equippedWeapon = new Weapon("Stick", 3, (float)0.1);
         return equippedWeapon;
     }
 
