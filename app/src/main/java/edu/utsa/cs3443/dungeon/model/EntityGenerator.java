@@ -14,22 +14,20 @@ public abstract class EntityGenerator {
      * entity from that list
      */
 
-    protected ArrayList<Entity> entityList;
+    protected ArrayList entityList;
     protected String entityDir;
     protected AssetManager aM;
 
     public EntityGenerator(String entityDir, AssetManager aM){
         this.entityDir = entityDir;
         this.aM = aM;
-        entityList = readFromList(); //TODO: this makes an ArrayList<Entity> out of an ArrayList<Weapon> etc.
+        //entityList = readFromList();
 
     }
 
     protected abstract ArrayList readFromList();
 
-    public Entity generate(){
-        Random r = new Random();
-        return entityList.get(r.nextInt(entityList.size()));
-    }
+    public abstract Entity generate();
+
 
 }

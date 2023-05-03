@@ -5,13 +5,16 @@ import android.content.res.AssetManager;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class WeaponGenerator extends EntityGenerator{
 
+    protected ArrayList<Weapon> entityList;
 
     public WeaponGenerator(String weaponDir, AssetManager aM){
         super(weaponDir, aM);
+        entityList = readFromList();
     }
 
     @Override
@@ -29,7 +32,7 @@ public class WeaponGenerator extends EntityGenerator{
             //                          Name,    Damage,                    Crit%
             Weapon tWeapon = new Weapon(strs[0], Integer.parseInt(strs[1]), Float.parseFloat(strs[2]));
             try {
-                tWeapon.loadLargeCharacter(entityDir + "/" + tWeapon.getName() + ".teff", aM);
+                tWeapon.loadLargeCharacter(entityDir + "/" + tWeapon.getName().toLowerCase() + ".tett", aM);
             } catch (IOException e) {
                 //TODO: handle IOException
             }
@@ -37,4 +40,11 @@ public class WeaponGenerator extends EntityGenerator{
         }
         return retList;
     }
+
+    public Weapon generate() {
+        Random r = new Random();
+        return entityList.get(r.nextInt(entityList.size()));
+    }
+
+
 }
