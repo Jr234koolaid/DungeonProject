@@ -33,23 +33,26 @@ public class ItemController implements View.OnClickListener
         // Check tag
         switch(String.valueOf(_view.getTag()))
         {
-            // TODO (Juan): Handle cases
+            // Player rejects the item
+            case "Reject":
+            {
+                Intent data = new Intent();
+
+                m_activity.setResult(Activity.RESULT_CANCELED, intent);
+                m_activity.finish();
+
+            } break;
+
+            // Player accepts the item
             case "Accept":
             {
                 Intent data = new Intent();
                 data.putExtra("EXTRA_ITEM_POP_REMOVE", true);
                 data.putExtra("EXTRA_ITEM_POP_ITEM", item);
+
                 m_activity.setResult(Activity.RESULT_OK, data);
                 m_activity.finish();
             }
-
-            case "Reject":
-            {
-                Intent data = new Intent();
-                m_activity.setResult(Activity.RESULT_OK, intent);
-                m_activity.finish();
-
-            } break;
 
             default:
                 break;

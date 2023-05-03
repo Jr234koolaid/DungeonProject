@@ -35,36 +35,13 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        //TextView foundWeapon = findViewById(R.id.im_weapon);
-        //Button buttonYes = findViewById(R.id.im_yes);
-        //Button buttonNo = findViewById(R.id.im_no);
-
-        // foundWeapon.setText(???);
-        // buttonYes.setOnClickListener(new Some_Controller_2());
-        // buttonNo.setOnClickListener(new Some_Controller_2());
-
         // Get context resources
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         Intent intent = getIntent();
 
-        // Get player
-        Player player = intent.getSerializableExtra("EXTRA_PLAYER_PUSH_PLAYER", Player.class);
-
         // Get item
-        final Item item;
-        switch(intent.getStringExtra("EXTRA_ITEM_PUSH_TYPE")){
-            case "ARMOR":
-                item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Armor.class);
-                break;
-            case "WEAPON":
-                item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Weapon.class);
-                break;
-            default:
-                item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Item.class);
-        }
+        final Item item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Item.class);
         final char[][] itemCharacter = item.getLargeCharacter();
-
-        //item.generate(this);
 
         // Create new table layout
         TableLayout tableLayout = new TableLayout(this);

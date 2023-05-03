@@ -1,33 +1,19 @@
 package edu.utsa.cs3443.dungeon.model;
 
-import android.content.Context;
 import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Locale;
-import java.util.Scanner;
-
-import edu.utsa.cs3443.dungeon.R;
 
 /**
  */
 public abstract class Entity implements Serializable
 {
     // Class variable
-    public static final int      MAX_SPRITE_WIDTH = 30;  //
-    public static final int      MAX_SPRITE_HEIGHT = 15; //
+    public static final int         MAX_SPRITE_WIDTH = 30;  //
+    public static final int         MAX_SPRITE_HEIGHT = 15; //
 
     // Member variables
-    //protected TableLayout           m_layout;           //
     protected final String          m_name;             //
     protected final int             m_minHP;            //
     protected final int             m_maxHP;            //
@@ -56,18 +42,7 @@ public abstract class Entity implements Serializable
         m_y = 0;
         m_attack = _attack;
     }
-
-    public final int getAttack() {
-        return m_attack;
-    }
-
-    /*
-    public TableLayout getLayout()
-    {
-        return m_layout;
-    }
-    */
-
+    
     /**
      */
     public final String getName()
@@ -126,6 +101,13 @@ public abstract class Entity implements Serializable
 
     /**
      */
+    public final int getAttack()
+    {
+        return m_attack;
+    }
+
+    /**
+     */
     public void setHP(final int _hp)
     {
         m_hp = _hp;
@@ -153,69 +135,21 @@ public abstract class Entity implements Serializable
      */
     public final boolean canInteract(final Entity _entity, final Map map)
     {
-        if (map.getData(_entity.getX(),_entity.getY()) == ' ')
-            return false;
-        return (
-                (m_x == _entity.m_x) && ((m_y == (_entity.m_y - 1)) || (m_y == (_entity.m_y + 1))) ||
+        return ((m_x == _entity.m_x) && ((m_y == (_entity.m_y - 1)) || (m_y == (_entity.m_y + 1))) ||
                 (m_y == _entity.m_y) && ((m_x == (_entity.m_x - 1)) || (m_x == (_entity.m_x + 1))));
     }
-
-    /*
-    public void generate(Context _context)
-    {
-        // Create new table layout
-        m_layout = new TableLayout(_context);
-
-        // Get context resources
-        Resources res = _context.getResources();
-        DisplayMetrics metrics = res.getDisplayMetrics();
-
-        // Create table
-        final float textWidth = 10.f;
-        final float rowWidth = (MAX_SPRITE_WIDTH * textWidth);
-
-        final int rowLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rowWidth, metrics));
-        final int textLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, textWidth, metrics));
-        final int textLayoutHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30.f, metrics));
-
-        for (int i = 0; i < MAX_SPRITE_HEIGHT; i++)
-        {
-            // Create row
-            TableRow row = new TableRow(_context);
-            row.setLayoutParams(new TableLayout.LayoutParams(rowLayoutWidth, TableLayout.LayoutParams.WRAP_CONTENT));
-
-            // Create text columns
-            for (int j = 0; j < MAX_SPRITE_WIDTH; j++)
-            {
-                TextView textView = new TextView(_context);
-                textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
-                textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
-                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
-                textView.setTextColor(_context.getColorStateList(R.color.teal_700));
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
-                textView.setText(String.valueOf(m_largeCharacter[i][j]));
-
-                // Add columns to row
-                row.addView(textView);
-            }
-
-            // Add row to table
-            m_layout.addView(row);
-        }
-    }
-    */
 
     /**
      */
     public void loadLargeCharacter(
-            final String    characterFilePath,
+            final String    _characterFilePath,
             AssetManager    _assetManager) throws IOException
     {
         // Allocate large character
         m_largeCharacter = new char[MAX_SPRITE_HEIGHT][MAX_SPRITE_WIDTH];
 
         // Go through large character data file
-        TextParser parser = new TextParser(characterFilePath, _assetManager);
+        TextParser parser = new TextParser(_characterFilePath, _assetManager);
 
         // Get large character data
         int sizeY = 0;

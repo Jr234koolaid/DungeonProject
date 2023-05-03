@@ -6,93 +6,110 @@ import java.util.Random;
  */
 public class Player extends Entity
 {
+    public static Player           INSTANCE = null;     //
+
+    private Weapon                  m_equippedWeapon;   //
+    private Armor[]                 m_equippedArmor;    //
+
     /**
      */
-
-    private static Player instance = null;
-
-    private Weapon equippedWeapon;
-    private Armor[] equippedArmor;
-
-
     private Player(final String _name, final int _maxHP, final char _smallCharacter)
     {
         super(_name, 0, _maxHP, _smallCharacter, 0);
-        equippedWeapon = new Weapon("Stick", 3, (float)0.1);
-        equippedArmor = new Armor[4];
+
+        m_equippedWeapon = new Weapon("Stick", 3, (float)0.1);
+        m_equippedArmor = new Armor[4];
     }
 
     /**
-     * Copy Constructor
-     *
-    public Player(Player _player)
-    {
-        super(_player.m_name, _player.m_minHP, _player.m_maxHP, _player.m_smallCharacter, _player.m_attack);
-
-        m_hp = _player.m_hp;
-        m_x = _player.m_x;
-        m_y = _player.m_y;
-        m_attack = _player.m_attack;
-    }
      */
+    public static Player getInstance()
+    {
+        if (INSTANCE == null)
+            INSTANCE = new Player("Player", 50, '@');
 
-    public static synchronized Player getInstance(){
-        if (instance == null)
-            instance = new Player("Player",50, '@');
-        return instance;
+        return INSTANCE;
     }
 
-    public static void destroy(){
-        instance = null;
+    /**
+     */
+    public static void destroy()
+    {
+        INSTANCE = null;
+    }
+
+    /**
+     */
+    public Weapon getWeapon()
+    {
+        return m_equippedWeapon;
     }
 
     /**
      */
     public void addItem(final Item item)
     {
-        switch (item.getType()){
+        final String type = item.getType();
+        switch (type)
+        {
             case "WEAPON":
-                equippedWeapon = (Weapon)item;
+                m_equippedWeapon = (Weapon)item;
                 break;
+
             case "ARMOR":
-                switch(((Armor)item).getSlot()){
+                switch(((Armor)item).getSlot())
+                {
                     case "head":
-                        equippedArmor[0] = (Armor)item; break;
+                        m_equippedArmor[0] = (Armor)item;
+                        break;
+
                     case "torso":
-                        equippedArmor[1] = (Armor)item; break;
+                        m_equippedArmor[1] = (Armor)item;
+                        break;
+
                     case "legs":
-                        equippedArmor[2] = (Armor)item; break;
+                        m_equippedArmor[2] = (Armor)item;
+                        break;
+
                     case "feet":
-                        equippedArmor[3] = (Armor)item; break;
+                        m_equippedArmor[3] = (Armor)item;
+                        break;
+                        
+                    case "HEALING":
+                        m_hp = m_maxHP;
+                        break;
+
                     default:
-                        //idk
-                }
-                break;
-            case "HEALING":
-                m_hp = m_maxHP;
-                break;
+                        break;
+                        
+                } break;
+                
             default:
-                //idk
+                break;
         }
-
     }
 
-    public int takeDamage(int attack){
-        int defense = defend(); //if -1, then dodge
-        int ret = attack - defense;
-        if (defense == -1) {
+    /**
+     */
+    public final int takeDamage(final int _attack)
+    {
+        final int defense = defend(); //if -1, then dodge
+        if (defense == -1)
             return -1;
-        }
-        else if (ret <= 0){
+
+        final int ret = (_attack - defense);
+        if (ret <= 0)
             return 0;
-        }
-        else {
-            setHP(getHP()-ret);
-            return ret;
-        }
+        else
+            m_hp -= ret;
+
+        return ret;
     }
 
-    public int defend(){
+    /**
+     */
+    public final int defend()
+    {
         Random r = new Random();
         if (r.nextFloat() < getTotalDodge())
             return -1;
@@ -100,26 +117,30 @@ public class Player extends Entity
             return getTotalDefense();
     }
 
-    public int getTotalDefense(){
-        int ret = 0;
-        for (Armor a : equippedArmor){
-            if (a != null)
-                ret += a.getDefense();
-        }
-        return ret;
-    }
-
-    public float getTotalDodge(){
-        float ret = (float)0.20;
-        for (Armor a : equippedArmor){
+    /**
+     */
+    public final float getTotalDodge()
+    {
+        float ret = 0.20f;
+        for (final Armor a : m_equippedArmor)
+        {
             if (a != null)
                 ret += a.getDodge();
-        }
-        return ret;
+
+        } return ret;
     }
 
-    public Weapon getWeapon(){
-        return equippedWeapon;
+    /**
+     */
+    public final int getTotalDefense()
+    {
+        int ret = 0;
+        for (final Armor a : m_equippedArmor)
+        {
+            if (a != null)
+                ret += a.getDefense();
+
+        } return ret;
     }
 
 } // class Player

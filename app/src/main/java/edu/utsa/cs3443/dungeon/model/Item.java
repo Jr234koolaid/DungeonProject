@@ -4,7 +4,7 @@ package edu.utsa.cs3443.dungeon.model;
  */
 public abstract class Item extends Entity
 {
-    protected String type;
+    protected String                m_type; //
 
     /**
      */

@@ -62,11 +62,8 @@ public class MainController implements View.OnClickListener
 
             // Continue from where user left off (not implemented yet)
             case "Continue":
-            {
-                Toast toast = Toast.makeText(_view.getContext(), "Not implemented yet", Toast.LENGTH_SHORT);
-                toast.show();
-
-            } break;
+                Toast.makeText(_view.getContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
 
             default:
                 break;

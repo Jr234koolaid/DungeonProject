@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
+import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.model.Map;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Player;
@@ -18,15 +21,13 @@ import edu.utsa.cs3443.dungeon.view.EnemyActivity;
  */
 public class EnemyController implements View.OnClickListener
 {
-    private EnemyActivity       m_activity; //
-    private Enemy                   m_enemy;
+    private AppCompatActivity       m_activity; //
 
     /**
      */
-    public EnemyController(EnemyActivity _activity, Enemy _enemy)
+    public EnemyController(AppCompatActivity _activity)
     {
         m_activity = _activity;
-        m_enemy = _enemy;
     }
 
     /**
@@ -35,86 +36,107 @@ public class EnemyController implements View.OnClickListener
     public void onClick(View _view)
     {
         // Check tag
-        switch(String.valueOf(_view.getTag()))
+        final String tag = String.valueOf(_view.getTag());
+        switch(tag)
         {
-            // TODO (Juan): Handle cases
+            // Player decides to not fight the enemy
             case "Back":
             {
                 Intent intent = new Intent();
-                intent.putExtra("EXTRA_ENEMY_POP_CODE", 1);
-                m_activity.setResult(Activity.RESULT_OK, intent);
+
+                m_activity.setResult(Activity.RESULT_CANCELED, intent);
                 m_activity.finish();
 
             } break;
 
-            case "Fight": {
-                //Enemy.enemyFight();
-                Player p = Player.getInstance();
-                int attack;
-                int damage;
+            // Player decides to fight the enemy
+            case "Fight":
+            {
+                // Get enemy
+                Enemy enemy = m_activity.getIntent().getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY", Enemy.class);
+                final String enemyName = enemy.getName();
 
+                // Get player
+                Player player = Player.getInstance();
+                final String playerName = player.getName();
 
-                //get player's item's attack
-                attack = p.getWeapon().attack();
-                //apply damage to enemy
-                damage = m_enemy.takeDamage(attack);
-                //display attack toast
-                displayAttackToast(p.getName(), damage, m_enemy.getName());
-                //update enemy health display
-                try {
+                // Player attack
+                final int playerAttack = player.getWeapon().attack();
+                enemy.setHP(enemy.getHP() - playerAttack);
+
+                // Display attack toast
+                DisplayAttackToast(player.getName(), playerAttack, enemy.getName());
+
+                // Update enemy info text
+                TextView enemyInfoText = m_activity.findViewById(R.id.ENEMY_info_text);
+                enemyInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", enemyName, enemy.getHP()));
+
+                /*
+                //wait 1 second
+                //TODO: make them not update at the same time
+                try
+                {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e)
+                {
                     throw new RuntimeException(e);
                 }
-                m_activity.displayEnemyStats(m_enemy);
-                if (m_enemy.getHP() <= m_enemy.getMinHP()){
-                    //you win
-                    Toast.makeText(m_activity,"You defeated: " + m_enemy.getName(), Toast.LENGTH_SHORT).show();
-                    m_activity.setResult(EnemyActivity.RESULT_WIN);
-                    m_activity.finish();
-                } else {
-                    //get enemy's attack
-                    attack = m_enemy.attack();
-                    //apply damage to player
-                    damage = p.takeDamage(attack);
-                    //display attack toast
-                    displayAttackToast(m_enemy.getName(), damage, p.getName());
-                    //update player health display
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    m_activity.displayPlayerStats(p);
+                 */
 
-                    if (p.getHP() <= p.getMinHP()){
-                        //you lose
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        Toast.makeText(m_activity,"YOU DIED", Toast.LENGTH_LONG).show();
-                        m_activity.setResult(EnemyActivity.RESULT_LOSE);
-                        m_activity.finish();
-                    }
+                // Enemy attack
+                final int enemyAttack = enemy.attack();
+                player.setHP(player.getHP() - enemyAttack);
+
+                // Display attack toast
+                DisplayAttackToast(enemyName, enemyAttack, playerName);
+
+                // Update player info text
+                TextView playerInfoText = m_activity.findViewById(R.id.PLAYER_info_text);
+                playerInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", playerName, player.getHP()));
+
+                // Check player's hp first
+                if (player.getHP() <= player.getMinHP())
+                {
+                    // You lose
+                    Toast.makeText(m_activity,"YOU DIED", Toast.LENGTH_LONG).show();
+                    
+                    Intent intent = new Intent();
+                    intent.putExtra("EXTRA_ENEMY_POP_WON", false);
+
+                    m_activity.setResult(Activity.RESULT_OK, intent);
+                    m_activity.finish();
                 }
 
-            }break;
+                // Check enemy's hp next
+                else if (enemy.getHP() <= enemy.getMinHP())
+                {
+                    // You win
+                    Intent intent = new Intent();
+                    intent.putExtra("EXTRA_ENEMY_POP_WON", true);
+                    intent.putExtra("EXTRA_ENEMY_POP_ENEMY", enemy);
+
+                    m_activity.setResult(Activity.RESULT_OK, intent);
+                    m_activity.finish();
+                }
+
+            } break;
 
             default:
                 break;
         }
     }
 
-    public void displayAttackToast(String attacker, int damageDealt, String victim){
-        if (damageDealt == -1){
-            Toast.makeText(m_activity, victim + " dodged " + attacker + "'s attack!", Toast.LENGTH_SHORT).show();
-        } else if (damageDealt == 0) {
-            Toast.makeText(m_activity, attacker + "'s attack missed " + victim + "!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(m_activity, attacker + " hit " + victim + " for " + damageDealt + " damage!", Toast.LENGTH_SHORT).show();
-        }
+    /**
+     */
+    private void DisplayAttackToast(final String _attacker, final int _damageDealt, final String _victim)
+    {
+        if (_damageDealt == -1)
+            Toast.makeText(m_activity, _victim + " dodged " + _attacker + "'s attack!", Toast.LENGTH_SHORT).show();
+        else if (_damageDealt == 0)
+            Toast.makeText(m_activity, _attacker + "'s attack missed " + _victim + "!", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(m_activity, _attacker + " hit " + _victim + " for " + _damageDealt + " damage!", Toast.LENGTH_SHORT).show();
     }
 
 } // class EnemyController
