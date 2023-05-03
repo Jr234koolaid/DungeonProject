@@ -38,7 +38,7 @@ public class Player extends Entity
 
     public static synchronized Player getInstance(){
         if (instance == null)
-            instance = new Player("Player",30, '@');
+            instance = new Player("Player",50, '@');
         return instance;
     }
 
@@ -67,6 +67,9 @@ public class Player extends Entity
                     default:
                         //idk
                 }
+                break;
+            case "HEALING":
+                m_hp = m_maxHP;
                 break;
             default:
                 //idk

@@ -121,7 +121,8 @@ public class EnemyActivity extends AppCompatActivity
         TextView textView1 = findViewById(R.id.PLAYER_info_text);
         textView1.setText(line1);
          */
-        displayEnemyAndPlayer(enemy, player);
+        displayEnemyStats(enemy);
+        displayPlayerStats(player);
 
 
         /*Button button = new Button(this);
@@ -141,14 +142,15 @@ public class EnemyActivity extends AppCompatActivity
         buttonLayout.addView(button);*/
     }
 
-    public void displayEnemyAndPlayer(Enemy enemy, Player player){
+    public void displayEnemyStats(Enemy enemy){
         String line = enemy.getName() + " \nHealth: " + enemy.getHP();// + " \nAttack: " + enemy.getAttack();
-        String line1 = "Player" + " \nHealth: " + player.getHP();// + " \nAttack: " + player.getAttack();
-
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
+    }
+    public void displayPlayerStats(Player player){
+        String line = "Player" + " \nHealth: " + player.getHP();// + " \nAttack: " + player.getAttack();
         TextView textView1 = findViewById(R.id.PLAYER_info_text);
-        textView1.setText(line1);
+        textView1.setText(line);
     }
 
 
