@@ -42,12 +42,12 @@ public abstract class Entity implements Serializable
         m_y = 0;
         m_attack = _attack;
     }
-
+    
     /**
      */
     public final String getName()
     {
-        return m_name;
+        return m_name.toUpperCase();
     }
 
     /**
@@ -133,7 +133,7 @@ public abstract class Entity implements Serializable
 
     /*
      */
-    public final boolean canInteract(final Entity _entity)
+    public final boolean canInteract(final Entity _entity, final Map map)
     {
         return ((m_x == _entity.m_x) && ((m_y == (_entity.m_y - 1)) || (m_y == (_entity.m_y + 1))) ||
                 (m_y == _entity.m_y) && ((m_x == (_entity.m_x - 1)) || (m_x == (_entity.m_x + 1))));

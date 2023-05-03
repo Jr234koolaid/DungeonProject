@@ -15,10 +15,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.controller.EnemyController;
 import edu.utsa.cs3443.dungeon.model.Enemy;
-import edu.utsa.cs3443.dungeon.model.Map;
+import edu.utsa.cs3443.dungeon.model.Entity;
+import edu.utsa.cs3443.dungeon.model.Player;
 
 /**
  */
@@ -36,35 +39,40 @@ public class EnemyActivity extends AppCompatActivity
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         Intent intent = getIntent();
 
-        // Get enemy layout
-        Enemy enemy = intent.getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY", Enemy.class);
+        // Get player
+        Player player = Player.getInstance();
+
+        // Get enemy
+        final Enemy enemy = intent.getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY", Enemy.class);
+        final char[][] enemyCharacter = enemy.getLargeCharacter();
 
         // Create new table layout
         TableLayout tableLayout = new TableLayout(this);
+
         // Create table
         final float textWidth = 10.f;
-        final float rowWidth = (enemy.MAX_SPRITE_WIDTH * textWidth);
+        final float rowWidth = (Entity.MAX_SPRITE_WIDTH * textWidth);
 
         final int rowLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rowWidth, metrics));
         final int textLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, textWidth, metrics));
         final int textLayoutHeight = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30.f, metrics));
 
-        for (int i = 0; i < enemy.MAX_SPRITE_HEIGHT; i++)
+        for (int i = 0; i < Entity.MAX_SPRITE_HEIGHT; i++)
         {
             // Create row
             TableRow row = new TableRow(this);
             row.setLayoutParams(new TableLayout.LayoutParams(rowLayoutWidth, TableLayout.LayoutParams.WRAP_CONTENT));
 
             // Create text columns
-            for (int j = 0; j < enemy.MAX_SPRITE_WIDTH; j++)
+            for (int j = 0; j < Entity.MAX_SPRITE_WIDTH; j++)
             {
                 TextView textView = new TextView(this);
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
-                textView.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+                textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
                 textView.setTextColor(this.getColorStateList(R.color.teal_700));
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
-                textView.setText(String.valueOf(enemy.m_largeCharacter[i][j]));
+                textView.setText(String.valueOf(enemyCharacter[i][j]));
 
                 // Add columns to row
                 row.addView(textView);
@@ -73,7 +81,6 @@ public class EnemyActivity extends AppCompatActivity
             // Add row to table
             tableLayout.addView(row);
         }
-
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
@@ -92,9 +99,6 @@ public class EnemyActivity extends AppCompatActivity
         LinearLayout mainLayout = findViewById(R.id.ENEMY_main_layout);
         mainLayout.addView(tableLayout, 0);
 
-        LinearLayout buttonLayout = findViewById(R.id.ENEMY_button_layout);
-
-        // TODO (Juan): REMOVE or finish
         EnemyController enemyController = new EnemyController(this);
 
         Button backButton = findViewById(R.id.ENEMY_button_back);
@@ -103,28 +107,13 @@ public class EnemyActivity extends AppCompatActivity
         Button fightButton = findViewById(R.id.ENEMY_button_fight);
         fightButton.setOnClickListener(enemyController);
 
-        // TODO (Josh): Get the enemy attack and health from file.
-        int health = 10;
-        int attack = 10;
-        String line = "Health: " + attack + " \nAttack: " + health;
-        TextView textView = findViewById(R.id.ENEMY_info_text);
-        textView.setText(line);
+        // Get enemy info text
+        TextView enemyInfoText = findViewById(R.id.ENEMY_info_text);
+        enemyInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", enemy.getName(), enemy.getHP()));
 
-        /*Button button = new Button(this);
-        button.setTag(String.valueOf("Back"));
-        button.setLayoutParams(new LinearLayout.LayoutParams(
-                Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200.f, metrics)),
-                Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75.f, metrics))));
-        button.setGravity(Gravity.CENTER);
-        button.setBackgroundTintList(getColorStateList(R.color.purple_700));
-        button.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
-        button.setTextColor(getColorStateList(R.color.white));
-        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16.f);
-        button.setText("text");
-        button.setOnClickListener(enemyController);
-
-        // Add button to button layout
-        buttonLayout.addView(button);*/
+        // Get player info text
+        TextView playerInfoText = findViewById(R.id.PLAYER_info_text);
+        playerInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", player.getName(), player.getHP()));
     }
 
 } // class EnemyActivity

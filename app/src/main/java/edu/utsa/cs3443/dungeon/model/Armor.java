@@ -1,5 +1,7 @@
 package edu.utsa.cs3443.dungeon.model;
 
+//import androidx.annotation.NonNull;
+
 /**
  */
 public class Armor extends Item
@@ -25,26 +27,42 @@ public class Armor extends Item
 
     /**
      */
-    public int getDefense() {
+    @Override
+    public String toString()
+    {
+        String ret = "You found " + getName() + "\n[def:" + getDefense() + "] [dodge:";
+        if(getDodge() >= 0)
+            ret+= "+";
+        ret += Math.round(getDodge()*100) + "%]" + "\nTake it?";
+        return ret;
+    }
+
+    /**
+    */
+    public int getDefense()
+    {
         return m_defense;
     }
 
     /**
      */
     @Override
-    public String getType(){
+    public String getType()
+    {
         return m_type;
     }
 
     /**
      */
-    public String getSlot() {
+    public String getSlot()
+    {
         return m_slot;
     }
 
     /**
      */
-    public float getDodge() {
+    public float getDodge()
+    {
         return m_dodge;
     }
 
