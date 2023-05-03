@@ -110,7 +110,7 @@ public class EnemyActivity extends AppCompatActivity
         fightButton.setOnClickListener(enemyController);
 
         String line = enemy.getName() + " \nHealth: " + enemy.getMaxHP() + " \nAttack: " + enemy.getAttack();
-        String line1 = "Player" + " \nHealth: " + player.getMaxHP() + " \nAttack: ";
+        String line1 = "Player" + " \nHealth: " + player.getMaxHP() + " \nAttack: " + player.getAttack();
 
         TextView textView = findViewById(R.id.ENEMY_info_text);
         textView.setText(line);
