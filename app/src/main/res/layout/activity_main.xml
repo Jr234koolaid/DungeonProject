@@ -48,7 +48,7 @@
         app:strokeWidth="2dp" />
 
     <!-- Continue game button -->
-    <Button
+    <!-- <Button
         android:id="@+id/MAIN_continue_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,6 +64,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MAIN_new_button"
         app:strokeColor="#0FBD17"
-        app:strokeWidth="2dp" />
+        app:strokeWidth="2dp" /> -->
+
+    <TextView
+        android:id="@+id/MAIN_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+
+        android:text="$ - Item"
+        android:textColor="#0FBD17"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.539" />
+
+    <TextView
+        android:id="@+id/MAIN_door"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+
+        android:text="# - Door"
+        android:textColor="#0FBD17"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <TextView
+        android:id="@+id/MAIN_smallEnemy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+
+        android:text="^ - small enemy"
+        android:textColor="#0FBD17"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616" />
+
+    <TextView
+        android:id="@+id/MAIN_bigEnemy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+
+        android:text="&amp; - big enemy"
+        android:textColor="#0FBD17"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.654" />
+
+    <TextView
+        android:id="@+id/MAIN_boss"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="false"
+
+        android:text="% - boss"
+        android:textColor="#0FBD17"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.693" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

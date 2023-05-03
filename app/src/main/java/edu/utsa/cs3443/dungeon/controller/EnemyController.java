@@ -13,16 +13,17 @@ import java.util.Locale;
 import edu.utsa.cs3443.dungeon.R;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Player;
+import edu.utsa.cs3443.dungeon.view.EnemyActivity;
 
 /**
  */
 public class EnemyController implements View.OnClickListener
 {
-    private AppCompatActivity       m_activity; //
+    private EnemyActivity m_activity; //
 
     /**
      */
-    public EnemyController(AppCompatActivity _activity)
+    public EnemyController(EnemyActivity _activity)
     {
         m_activity = _activity;
     }
@@ -96,13 +97,14 @@ public class EnemyController implements View.OnClickListener
                 if (player.getHP() <= player.getMinHP())
                 {
                     // You lose
-                    Toast.makeText(m_activity, "YOU DIED", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(m_activity, "YOU DIED", Toast.LENGTH_LONG).show();
+                    m_activity.onPlayerLosesFight(enemyName);
                     
                     Intent intent = new Intent();
                     intent.putExtra("EXTRA_ENEMY_POP_WON", false);
 
                     m_activity.setResult(Activity.RESULT_OK, intent);
-                    m_activity.finish();
+                    //m_activity.finish();
                 }
 
                 // Check enemy's hp next
@@ -113,8 +115,10 @@ public class EnemyController implements View.OnClickListener
                     intent.putExtra("EXTRA_ENEMY_POP_WON", true);
                     intent.putExtra("EXTRA_ENEMY_POP_ENEMY", enemy);
 
+                    m_activity.onPlayerWinsFight(enemyName);
+
                     m_activity.setResult(Activity.RESULT_OK, intent);
-                    m_activity.finish();
+                    //m_activity.finish();
                 }
 
             } break;

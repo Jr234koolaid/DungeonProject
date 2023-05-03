@@ -2,7 +2,9 @@ package edu.utsa.cs3443.dungeon.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.app.AlertDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -114,6 +116,38 @@ public class EnemyActivity extends AppCompatActivity
         // Get player info text
         TextView playerInfoText = findViewById(R.id.PLAYER_info_text);
         playerInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", player.getName(), player.getHP()));
+    }
+    public void onPlayerWins() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EnemyActivity.this);
+        builder.setMessage("You have won the game!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    public void onPlayerWinsFight(String attacker) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EnemyActivity.this);
+        builder.setMessage("You have defeated " + attacker + "!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface alertDialog) {
+                finish();
+            }
+        });
+        alertDialog.show();
+        //alertDialog.cancel();
+    }
+    public void onPlayerLosesFight(String attacker) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EnemyActivity.this);
+        builder.setMessage("You have been defeated by " + attacker + "...\nGAME OVER!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface alertDialog) {
+                finish();
+            }
+        });
+        alertDialog.show();
+        //alertDialog.cancel();
     }
 
 } // class EnemyActivity

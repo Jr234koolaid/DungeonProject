@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity
         newButton.setOnClickListener(mainController);
 
         // Get continue game button
-        Button continueButton = findViewById(R.id.MAIN_continue_button);
-        continueButton.setOnClickListener(mainController);
+        //Button continueButton = findViewById(R.id.MAIN_continue_button);
+        //continueButton.setOnClickListener(mainController);
     }
 
 } // class MainActivity
