@@ -443,11 +443,15 @@ public class Map extends TableLayout
 
                     // Add to list
                     m_itemList.add(armor);
-
+                    
                     // Replace character at item x and y with item
                     m_data[y][x] = armor.getSmallCharacter();
-
+                    
                 } break;
+                
+                case "HEALING":
+                    m_itemList.add(new HealingItem("potion", _assetManager));
+                    break;
 
                 default:
                     break;
