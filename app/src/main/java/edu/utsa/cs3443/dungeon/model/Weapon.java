@@ -1,6 +1,6 @@
 package edu.utsa.cs3443.dungeon.model;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 
 import java.util.Random;
 
@@ -62,7 +62,7 @@ public class Weapon extends Item
     }
     */
 
-    @NonNull
+    //@NonNull
     @Override
     public String toString() {
         String ret = "You found " + getName() + "\n[dmg:" + getDamage() + "] [crit:";
@@ -74,11 +74,16 @@ public class Weapon extends Item
          return ret;
     }
 
-    public int getDamage() {
-        return damage;
-    }
-    public float getCrit() {
-        return crit;
+    /**
+     */
+    public int getDamage()
+    {
+        return m_damage;
     }
 
+    /**
+     */
+    public float getCrit() {
+        return m_crit;
+    }
 }
