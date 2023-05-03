@@ -45,6 +45,17 @@ public class MapController implements View.OnClickListener
                         // Generate map layout
                         map.generate();
                     }
+                    if (result.getResultCode() == EnemyActivity.RESULT_WIN){
+                        //remove the enemy from the screen
+                        Map map = m_activity.findViewById(R.id.MAP_map);
+                        map.removeEnemy(map.getEnemyList().get(0)); //TODO: make this work for more than one
+                        map.generate();
+                    }
+                    if (result.getResultCode() == EnemyActivity.RESULT_LOSE){
+                        //destroy everything and return to main menu
+                        Player.destroy();
+                        m_activity.finish();
+                    }
                 });
         m_itemActivityStart = m_activity.registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -85,31 +96,31 @@ public class MapController implements View.OnClickListener
         Map map = m_activity.findViewById(R.id.MAP_map);
 
         // Update player movement
-        Player player = new Player(map.getPlayer());
+        Player player = Player.getInstance();//new Player(map.getPlayer());
         switch(String.valueOf(_view.getTag()))
         {
             // Move player left
             case "Left":
-                player.setX(player.getX() - 1);
-                map.updatePlayer(player);
+                //player.setX(player.getX() - 1);
+                map.updatePlayer(player.getX()-1, player.getY());
                 break;
 
             // Move player right
             case "Right":
-                player.setX(player.getX() + 1);
-                map.updatePlayer(player);
+                //player.setX(player.getX() + 1);
+                map.updatePlayer(player.getX()+1, player.getY());
                 break;
 
             // Move player up
             case "Up":
-                player.setY(player.getY() - 1);
-                map.updatePlayer(player);
+                //player.setY(player.getY() - 1);
+                map.updatePlayer(player.getX(), player.getY()-1);
                 break;
 
             // Move player down
             case "Down":
-                player.setY(player.getY() + 1);
-                map.updatePlayer(player);
+                //player.setY(player.getY() + 1);
+                map.updatePlayer(player.getX(), player.getY()+1);
                 break;
 
             // Check interactions with entities
