@@ -20,10 +20,24 @@ public class Weapon extends Item
     public Weapon(final String _name, final int _damage, final float _crit)
     {
         super(_name, '$'); //note: I think all weapons and armor should be the same symbol on the map. -R
+
         m_type = "WEAPON";
         m_damage = _damage;
         m_crit = _crit;
         m_accuracy = 0.8f;
+    }
+
+    /**
+     */
+    public Weapon(final Weapon _weapon)
+    {
+        super(_weapon.m_name, _weapon.m_smallCharacter);
+
+        m_largeCharacter = _weapon.m_largeCharacter;
+        m_type = _weapon.m_type;
+        m_damage = _weapon.m_damage;
+        m_crit = _weapon.m_crit;
+        m_accuracy = _weapon.m_accuracy;
     }
 
     /**

@@ -11,7 +11,8 @@ public class ArmorGenerator extends EntityGenerator{
 
     protected ArrayList<Armor> entityList;
 
-    public ArmorGenerator(String armorDir, AssetManager aM){
+    public ArmorGenerator(String armorDir, AssetManager aM)
+    {
         super(armorDir, aM);
         entityList = readFromList();
     }
@@ -46,9 +47,10 @@ public class ArmorGenerator extends EntityGenerator{
         return retList;
     }
 
-    public Armor generate() {
+    public Armor generate()
+    {
         Random r = new Random();
-        return entityList.get(r.nextInt(entityList.size()));
+        return new Armor(entityList.get(r.nextInt(entityList.size())));
     }
 
 }

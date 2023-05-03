@@ -20,7 +20,7 @@ import edu.utsa.cs3443.dungeon.R;
 public class Map extends TableLayout
 {
     // Class variables
-    protected static final int      MAX_MAP_WIDTH = 35;     //
+    protected static final int      MAX_MAP_WIDTH = 30;     //
     protected static final int      MAX_MAP_HEIGHT = 15;    //
 
     // Member variables
@@ -170,7 +170,7 @@ public class Map extends TableLayout
         DisplayMetrics metrics = res.getDisplayMetrics();
 
         // Create table
-        final float textWidth = 10.f;
+        final float textWidth = 12.f;
         final float rowWidth = (MAX_MAP_WIDTH * textWidth);
 
         final int rowLayoutWidth = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rowWidth, metrics));
