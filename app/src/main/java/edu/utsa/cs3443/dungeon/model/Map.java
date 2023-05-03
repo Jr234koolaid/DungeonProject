@@ -145,6 +145,10 @@ public class Map extends TableLayout
     public void removeItem(final Item _item)
     {
         // TODO (Juan): Implement
+        final int setX = _item.getX();
+        final int setY = _item.getY();
+
+        m_data[setY][setX] = ' ';
     }
 
     /**
@@ -423,6 +427,11 @@ public class Map extends TableLayout
                 {
                     // TODO (Juan): Implement
                     m_itemList.add(aGen.generate());
+                }
+                break;
+                case "HEALING":
+                {
+                    m_itemList.add(new HealingItem("potion", _assetManager));
                 }
                 break;
             }

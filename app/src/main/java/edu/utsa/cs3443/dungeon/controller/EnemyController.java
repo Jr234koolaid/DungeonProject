@@ -61,36 +61,44 @@ public class EnemyController implements View.OnClickListener
                 //display attack toast
                 displayAttackToast(p.getName(), damage, m_enemy.getName());
                 //update enemy health display
-                m_activity.displayEnemyAndPlayer(m_enemy, p);
-
-                //wait 1 second
-                //TODO: make them not update at the same time
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
-                //get enemy's attack
-                attack = m_enemy.attack();
-                //apply damage to player
-                damage = p.takeDamage(attack);
-                //display attack toast
-                displayAttackToast(m_enemy.getName(), damage, p.getName());
-                //update player health display
-                m_activity.displayEnemyAndPlayer(m_enemy, p);
-
-                if (p.getHP() <= p.getMinHP()){
-                    //you lose
-                    m_activity.setResult(EnemyActivity.RESULT_LOSE);
-                    m_activity.finish();
-
-                } else if (m_enemy.getHP() <= m_enemy.getMinHP()){
+                m_activity.displayEnemyStats(m_enemy);
+                if (m_enemy.getHP() <= m_enemy.getMinHP()){
                     //you win
+                    Toast.makeText(m_activity,"You defeated: " + m_enemy.getName(), Toast.LENGTH_SHORT).show();
                     m_activity.setResult(EnemyActivity.RESULT_WIN);
                     m_activity.finish();
-                }
+                } else {
+                    //get enemy's attack
+                    attack = m_enemy.attack();
+                    //apply damage to player
+                    damage = p.takeDamage(attack);
+                    //display attack toast
+                    displayAttackToast(m_enemy.getName(), damage, p.getName());
+                    //update player health display
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    m_activity.displayPlayerStats(p);
 
+                    if (p.getHP() <= p.getMinHP()){
+                        //you lose
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Toast.makeText(m_activity,"YOU DIED", Toast.LENGTH_LONG).show();
+                        m_activity.setResult(EnemyActivity.RESULT_LOSE);
+                        m_activity.finish();
+                    }
+                }
 
             }break;
 

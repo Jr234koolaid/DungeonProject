@@ -1,5 +1,7 @@
 package edu.utsa.cs3443.dungeon.model;
 
+import androidx.annotation.NonNull;
+
 public class Armor extends Item{
 
     protected String slot;
@@ -20,6 +22,17 @@ public class Armor extends Item{
         this.defense = defense;
         this.dodge = dodge;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        String ret = "You found " + getName() + "\n[def:" + getDefense() + "] [dodge:";
+        if(getDodge() >= 0)
+            ret+= "+";
+        ret += Math.round(getDodge()*100) + "%]" + "\nTake it?";
+        return ret;
+    }
+
 
     public int getDefense() {
         return defense;
