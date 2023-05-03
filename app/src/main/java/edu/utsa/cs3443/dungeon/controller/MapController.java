@@ -135,7 +135,7 @@ public class MapController implements View.OnClickListener
             case "Interact":
                 for (final Door door : map.getDoorList())
                 {
-                    if (player.canInteract(door))
+                    if (player.canInteract(door, map))
                     {
                         // Finish this activity
                         Intent intent = new Intent();
@@ -148,7 +148,7 @@ public class MapController implements View.OnClickListener
                 }
                 for (final Enemy enemy : map.getEnemyList())
                 {
-                    if (player.canInteract(enemy))
+                    if (player.canInteract(enemy, map))
                     {
                         //System.out.println("Interacting with enemy: " + enemy.getName());
 
@@ -162,7 +162,7 @@ public class MapController implements View.OnClickListener
                 }
                 for (final Item item : map.getItemList())
                 {
-                    if (player.canInteract(item))
+                    if (player.canInteract(item, map))
                     {
                         /*
                         System.out.println("Interacting with item: " + item.getName());

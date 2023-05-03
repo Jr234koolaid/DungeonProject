@@ -26,7 +26,7 @@ public class Player extends Entity
     public static Player getInstance()
     {
         if (INSTANCE == null)
-            INSTANCE = new Player("Player",30, '@');
+            INSTANCE = new Player("Player", 50, '@');
 
         return INSTANCE;
     }
@@ -57,7 +57,8 @@ public class Player extends Entity
                 break;
 
             case "ARMOR":
-                switch(((Armor)item).getSlot()){
+                switch(((Armor)item).getSlot())
+                {
                     case "head":
                         m_equippedArmor[0] = (Armor)item;
                         break;
@@ -73,11 +74,16 @@ public class Player extends Entity
                     case "feet":
                         m_equippedArmor[3] = (Armor)item;
                         break;
+                        
+                    case "HEALING":
+                        m_hp = m_maxHP;
+                        break;
 
                     default:
                         break;
+                        
                 } break;
-
+                
             default:
                 break;
         }
