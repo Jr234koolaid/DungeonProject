@@ -96,7 +96,7 @@ public class EnemyController implements View.OnClickListener
                 if (player.getHP() <= player.getMinHP())
                 {
                     // You lose
-                    Toast.makeText(m_activity,"YOU DIED", Toast.LENGTH_LONG).show();
+                    Toast.makeText(m_activity, "YOU DIED", Toast.LENGTH_LONG).show();
                     
                     Intent intent = new Intent();
                     intent.putExtra("EXTRA_ENEMY_POP_WON", false);
