@@ -2,9 +2,6 @@ package edu.utsa.cs3443.dungeon.model;
 
 import java.util.Random;
 
-import edu.utsa.cs3443.dungeon.model.Map;
-import edu.utsa.cs3443.dungeon.model.Player;
-
 /**
  */
 public class Enemy extends Entity
