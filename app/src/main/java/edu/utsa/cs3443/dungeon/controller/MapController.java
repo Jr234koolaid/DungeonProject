@@ -42,19 +42,30 @@ public class MapController implements View.OnClickListener
                         // TODO (Juan): Handle the Intent
                         Intent enemyData = result.getData();
 
+                        // Check if player won
+                        final boolean playerWon = enemyData.getBooleanExtra("EXTRA_ENEMY_POP_WON", false);
+                        if (playerWon)
+                        {
+                            // Get player to remove
+                            Enemy enemy = enemyData.getSerializableExtra("EXTRA_ENEMY_POP_ENEMY", Enemy.class);
+
+                            // Remove the enemy from the screen
+                            map.removeEnemy(enemy); //TODO: make this work for more than one
+                        }
+                        else
+                        {
+                            // Destroy the player
+                            Player.destroy();
+
+                            // Exit
+                            Intent intent = new Intent();
+
+                            m_activity.setResult(Activity.RESULT_CANCELED, intent);
+                            m_activity.finish();
+                        }
+
                         // Generate map layout
                         map.generate();
-                    }
-                    if (result.getResultCode() == EnemyActivity.RESULT_WIN){
-                        //remove the enemy from the screen
-                        Map map = m_activity.findViewById(R.id.MAP_map);
-                        map.removeEnemy(map.getEnemyList().get(0)); //TODO: make this work for more than one
-                        map.generate();
-                    }
-                    if (result.getResultCode() == EnemyActivity.RESULT_LOSE){
-                        //destroy everything and return to main menu
-                        Player.destroy();
-                        m_activity.finish();
                     }
                 });
         m_itemActivityStart = m_activity.registerForActivityResult(
@@ -76,12 +87,12 @@ public class MapController implements View.OnClickListener
                             final Item item = itemData.getSerializableExtra("EXTRA_ITEM_POP_ITEM", Item.class);
                             map.removeItem(item);
 
-                            // Generate map layout
-                            map.generate();
-
                             // Get player
                             Player.getInstance().addItem(item);
                         }
+
+                        // Generate map layout
+                        map.generate();
                     }
                 });
     }
@@ -95,31 +106,29 @@ public class MapController implements View.OnClickListener
         Map map = m_activity.findViewById(R.id.MAP_map);
 
         // Update player movement
-        Player player = Player.getInstance();//new Player(map.getPlayer());
-        switch(String.valueOf(_view.getTag()))
+        final Player player = Player.getInstance();
+
+        final String tag = String.valueOf(_view.getTag());
+        switch(tag)
         {
             // Move player left
             case "Left":
-                //player.setX(player.getX() - 1);
-                map.updatePlayer(player.getX()-1, player.getY());
+                map.updatePlayer((player.getX() - 1), player.getY());
                 break;
 
             // Move player right
             case "Right":
-                //player.setX(player.getX() + 1);
-                map.updatePlayer(player.getX()+1, player.getY());
+                map.updatePlayer((player.getX() + 1), player.getY());
                 break;
 
             // Move player up
             case "Up":
-                //player.setY(player.getY() - 1);
-                map.updatePlayer(player.getX(), player.getY()-1);
+                map.updatePlayer(player.getX(), (player.getY() - 1));
                 break;
 
             // Move player down
             case "Down":
-                //player.setY(player.getY() + 1);
-                map.updatePlayer(player.getX(), player.getY()+1);
+                map.updatePlayer(player.getX(), (player.getY() + 1));
                 break;
 
             // Check interactions with entities
@@ -141,11 +150,10 @@ public class MapController implements View.OnClickListener
                 {
                     if (player.canInteract(enemy))
                     {
-                        System.out.println("Interacting with enemy: " + enemy.getName());
+                        //System.out.println("Interacting with enemy: " + enemy.getName());
 
                         Intent intent = new Intent(m_activity, EnemyActivity.class);
                         intent.putExtra("EXTRA_ENEMY_PUSH_ENEMY", enemy);
-                        intent.putExtra("EXTRA_PLAYER_PUSH_PLAYER", player);
 
                         // Launch new activity
                         m_enemyActivityStart.launch(intent);
@@ -156,15 +164,17 @@ public class MapController implements View.OnClickListener
                 {
                     if (player.canInteract(item))
                     {
+                        /*
                         System.out.println("Interacting with item: " + item.getName());
                         for (char[] chArr : item.getLargeCharacter()){
                             for (char ch : chArr)
                                 System.out.print(ch);
                             System.out.println();
                         }
+                         */
 
                         Intent intent = new Intent(m_activity, ItemActivity.class);
-                        intent.putExtra("EXTRA_ITEM_PUSH_TYPE", item.getType());
+                        //intent.putExtra("EXTRA_ITEM_PUSH_TYPE", item.getType());
                         intent.putExtra("EXTRA_ITEM_PUSH_ITEM", item);
 
                         // Launch new activity

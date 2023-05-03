@@ -2,39 +2,46 @@ package edu.utsa.cs3443.dungeon.model;
 
 import java.util.Random;
 
-public class Weapon extends Item {
-
-
-    protected int damage;
-    protected float crit;
-    protected float accuracy;
+/**
+ */
+public class Weapon extends Item
+{
+    protected int                   m_damage;   //
+    protected float                 m_crit;     //
+    protected float                 m_accuracy; //
 
     /**
-     * @param name Weapon's name (also used for finding bigCharacter)
-     * @param damage Weapon's damage (int, >0)
-     * @param crit Weapon's chance to do double damage (float, 0.00-1.00)
+     * @param _name Weapon's name (also used for finding bigCharacter)
+     * @param _damage Weapon's damage (int, >0)
+     * @param _crit Weapon's chance to do double damage (float, 0.00-1.00)
      */
-    public Weapon(String name, int damage, float crit) {
-        super(name, '$'); //note: I think all weapons and armor should be the same symbol on the map. -R
-        this.type = "WEAPON";
-        this.damage = damage;
-        this.crit = crit;
-        accuracy = (float) 0.8;
+    public Weapon(final String _name, final int _damage, final float _crit)
+    {
+        super(_name, '$'); //note: I think all weapons and armor should be the same symbol on the map. -R
+        m_type = "WEAPON";
+        m_damage = _damage;
+        m_crit = _crit;
+        m_accuracy = 0.8f;
     }
 
-    public int attack() {
+    /**
+     */
+    public int attack()
+    {
         Random r = new Random();
-        if (r.nextFloat() > accuracy)
+        if (r.nextFloat() > m_accuracy)
             return 0;
-        else if (r.nextFloat() <= crit)
-            return 2*damage;
+        else if (r.nextFloat() <= m_crit)
+            return (2 * m_damage);
         else
-            return damage;
+            return m_damage;
     }
 
+    /**
+     */
     @Override
     public String getType() {
-        return type;
+        return m_type;
     }
 
     //TODO (R): create modifiers (maybe using EntityGenerator)

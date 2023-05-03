@@ -29,7 +29,6 @@ public class Map extends TableLayout
     private int                     m_nextFloor;    //
     private int                     m_nextMap;      //
     private char[][]                m_data;         //
-    private Player                  m_player;       //
     private ArrayList<Door>         m_doorList;     //
     private ArrayList<Enemy>        m_enemyList;    //
     private ArrayList<Item>         m_itemList;     //
@@ -75,13 +74,6 @@ public class Map extends TableLayout
 
     /**
      */
-    public final Player getPlayer()
-    {
-        return m_player;
-    }
-
-    /**
-     */
     public final ArrayList<Door> getDoorList()
     {
         return m_doorList;
@@ -101,39 +93,45 @@ public class Map extends TableLayout
         return m_itemList;
     }
 
-    /*
-     */
-    public void updatePlayer(final int setX, final int setY)
-    {
-        // Check if player can move
-        //final int setX = _player.getX();
-        //final int setY = _player.getY();
-
-        if (m_data[setY][setX] == ' ')
-        {
-            // Replace player's previous spot with an empty space
-            m_data[m_player.getY()][m_player.getX()] = ' ';
-
-            // Set player spot
-            m_player.setX(setX);
-            m_player.setY(setY);
-
-            m_data[setY][setX] = m_player.getSmallCharacter();
-        }
-    }
-
     /**
      */
-    public void updateEnemy(final Enemy _enemy)
+    public void updatePlayer(final int _setX, final int _setY)
     {
-        // TODO (Juan): Implement
+        // Check if player can move
+        if (m_data[_setY][_setX] == ' ')
+        {
+            // Get player
+            Player player = Player.getInstance();
+
+            final int x = player.getX();
+            final int y = player.getY();
+
+            // Replace player's previous spot with an empty space
+            m_data[y][x] = ' ';
+
+            // Set player spot
+            player.setX(_setX);
+            player.setY(_setY);
+
+            m_data[_setY][_setX] = player.getSmallCharacter();
+        }
     }
 
     /**
      */
     public void removeEnemy(final Enemy _enemy)
     {
-        // TODO (Juan): Implement correctly
+        // Remove enemy from list
+        for (final Enemy enemy : m_enemyList)
+        {
+            if (enemy.getName().equals(_enemy.getName()))
+            {
+                m_enemyList.remove(enemy);
+                break;
+            }
+        }
+
+        // Reset map location
         final int setX = _enemy.getX();
         final int setY = _enemy.getY();
 
@@ -144,7 +142,21 @@ public class Map extends TableLayout
      */
     public void removeItem(final Item _item)
     {
-        // TODO (Juan): Implement
+        // Remove item from list
+        for (final Item item : m_itemList)
+        {
+            if (item.getName().equals(_item.getName()))
+            {
+                m_itemList.remove(item);
+                break;
+            }
+        }
+
+        // Reset map location
+        final int setX = _item.getX();
+        final int setY = _item.getY();
+
+        m_data[setY][setX] = ' ';
     }
 
     /**
@@ -281,19 +293,16 @@ public class Map extends TableLayout
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
-            // Create player
+            // Add to player info
             final int x = Integer.parseInt(infoTokens[0]);
             final int y = Integer.parseInt(infoTokens[1]);
-            final char smallCharacter = infoTokens[2].charAt(0);
-            final int maxHP = Integer.parseInt(infoTokens[3]);
-            final int attack = Integer.parseInt(infoTokens[4]);
 
-            m_player = Player.getInstance();//new Player(name, maxHP, smallCharacter, attack);
-            m_player.setX(x);
-            m_player.setY(y);
+            Player player = Player.getInstance();
+            player.setX(x);
+            player.setY(y);
 
             // Replace character at player x and y with player
-            m_data[y][x] = m_player.getSmallCharacter();
+            m_data[y][x] = player.getSmallCharacter();
         }
 
         // Close the parser
@@ -403,36 +412,46 @@ public class Map extends TableLayout
             final String name = lineTokens[0];
             final String[] infoTokens = lineTokens[1].split(",");
 
-            //final String itemDir = (_root + "/" + name.toLowerCase());
-
             // Create Item
             final int x = Integer.parseInt(infoTokens[0]);
             final int y = Integer.parseInt(infoTokens[1]);
-            //final char smallCharacter = infoTokens[2].charAt(0);
 
             // Generate items
             switch(name)
             {
                 case "WEAPON":
                 {
-                    // TODO (Juan): Implement
-                    m_itemList.add(wGen.generate());
-                }
-                break;
+                    // Get randomly generated weapon
+                    Weapon weapon = wGen.generate();
+                    weapon.setX(x);
+                    weapon.setY(y);
+
+                    // Add to list
+                    m_itemList.add(weapon);
+
+                    // Replace character at item x and y with item
+                    m_data[y][x] = weapon.getSmallCharacter();
+
+                } break;
+
                 case "ARMOR":
                 {
-                    // TODO (Juan): Implement
-                    m_itemList.add(aGen.generate());
-                }
-                break;
+                    // Get randomly generated armor
+                    Armor armor = aGen.generate();
+                    armor.setX(x);
+                    armor.setY(y);
+
+                    // Add to list
+                    m_itemList.add(armor);
+
+                    // Replace character at item x and y with item
+                    m_data[y][x] = armor.getSmallCharacter();
+
+                } break;
+
+                default:
+                    break;
             }
-
-            // Replace character at item x and y with item
-            m_data[y][x] = m_itemList.get(m_itemList.size()-1).getSmallCharacter();
-            // set the X and Y variables in the Item object
-            m_itemList.get(m_itemList.size()-1).setX(x);
-            m_itemList.get(m_itemList.size()-1).setY(y);
-
         }
 
         // Close parser
