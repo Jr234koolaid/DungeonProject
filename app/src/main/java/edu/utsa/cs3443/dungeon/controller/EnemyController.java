@@ -1,7 +1,6 @@
 package edu.utsa.cs3443.dungeon.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
@@ -12,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 import edu.utsa.cs3443.dungeon.R;
-import edu.utsa.cs3443.dungeon.model.Map;
 import edu.utsa.cs3443.dungeon.model.Enemy;
 import edu.utsa.cs3443.dungeon.model.Player;
-import edu.utsa.cs3443.dungeon.view.EnemyActivity;
 
 /**
  */
@@ -99,7 +96,7 @@ public class EnemyController implements View.OnClickListener
                 if (player.getHP() <= player.getMinHP())
                 {
                     // You lose
-                    Toast.makeText(m_activity,"YOU DIED", Toast.LENGTH_LONG).show();
+                    Toast.makeText(m_activity, "YOU DIED", Toast.LENGTH_LONG).show();
                     
                     Intent intent = new Intent();
                     intent.putExtra("EXTRA_ENEMY_POP_WON", false);
