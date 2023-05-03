@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.utsa.cs3443.dungeon.model.Map;
+import edu.utsa.cs3443.dungeon.model.Enemy;
 
 /**
  */
@@ -43,8 +44,8 @@ public class EnemyController implements View.OnClickListener
 
             case "Fight":
             {
-                Toast toast = Toast.makeText(_view.getContext(), "Not implemented yet", Toast.LENGTH_SHORT);
-                toast.show();
+                Enemy.enemyFight();
+                m_activity.finish();
 
             }break;
 
