@@ -2,7 +2,7 @@
 A small Android text based dungeon game.
 Made by Jocelyn Ting, Josh Fuentes, Juan Rivera, and Richard Powell
 
-Use the arrows to move around the player.
+Use the arrows to move around the player '@'.
 Pressed the interact key to interact with items '$' or enemies.
 
 Items are randomly generated and add to the stats of the player.
