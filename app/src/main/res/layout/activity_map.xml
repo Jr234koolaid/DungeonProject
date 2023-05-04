@@ -37,7 +37,7 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
-        <!-- Interact button -->
+        <!-- Left button -->
         <Button
             android:id="@+id/MAP_left_button"
             android:tag="Left"
@@ -53,7 +53,7 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
-        <!-- Interact button -->
+        <!-- Right button -->
         <Button
             android:id="@+id/MAP_right_button"
             android:tag="Right"
@@ -70,7 +70,7 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
-        <!-- Interact button -->
+        <!-- Up button -->
         <Button
             android:id="@+id/MAP_up_button"
             android:tag="Up"
@@ -87,7 +87,7 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
-        <!-- Interact button -->
+        <!-- Down button -->
         <Button
             android:id="@+id/MAP_down_button"
             android:tag="Down"

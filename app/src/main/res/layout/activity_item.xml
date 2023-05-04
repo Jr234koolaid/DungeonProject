@@ -14,13 +14,12 @@
     <!-- Table layout of item will be programmatically added here -->
 
     <!-- Item information text -->
-
-    <!-- Button layout -->
     <TextView
         style="@style/TextView"
         android:id="@+id/ITEM_info_text"
         android:text="Item name and stuff" />
 
+    <!-- Button layout -->
     <LinearLayout
         android:id="@+id/ITEM_button_layout"
         android:layout_width="match_parent"
