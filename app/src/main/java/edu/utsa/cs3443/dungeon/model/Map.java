@@ -398,6 +398,8 @@ public class Map extends TableLayout
         // Create the generators
         WeaponGenerator wGen = new WeaponGenerator(weaponDir, _assetManager);
         ArmorGenerator aGen = new ArmorGenerator(armorDir, _assetManager);
+        ModifierGenerator mGen = new ModifierGenerator();
+
 
         // Go through item file
         TextParser parser = new TextParser((mapDir + "/" + "item.tinf"), _assetManager);
@@ -423,6 +425,7 @@ public class Map extends TableLayout
                     Weapon weapon = wGen.generate();
                     weapon.setX(x);
                     weapon.setY(y);
+                    weapon.applyModifier(mGen.generate());
 
                     // Add to list
                     m_itemList.add(weapon);
@@ -438,6 +441,7 @@ public class Map extends TableLayout
                     Armor armor = aGen.generate();
                     armor.setX(x);
                     armor.setY(y);
+                    armor.applyModifier(mGen.generate());
 
                     // Add to list
                     m_itemList.add(armor);

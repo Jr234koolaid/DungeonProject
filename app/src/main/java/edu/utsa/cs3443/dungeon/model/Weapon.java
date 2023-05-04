@@ -11,6 +11,7 @@ public class Weapon extends Item
     protected int                   m_damage;   //
     protected float                 m_crit;     //
     protected float                 m_accuracy; //
+    protected String                m_modifier;
 
     /**
      * @param _name Weapon's name (also used for finding bigCharacter)
@@ -61,25 +62,25 @@ public class Weapon extends Item
     }
 
     //TODO (R): create modifiers (maybe using EntityGenerator)
-    /*
-    public void applyModifier(String modifierName, int damageChange, float critChange, float accuracyChange) {
-        m_name = modifierName + " " + m_name;
-        damage += damageChange;
-        if (damage < 0)
-            damage = 0;
-        crit += critChange;
-        if (crit < (float) 0.0)
-            crit = (float) 0.0;
-        accuracy += accuracyChange;
-        if (accuracy < (float) 0.0)
-            accuracy = (float) 0.0;
+
+    public void applyModifier(Modifier mod) {
+        m_modifier = mod.getName();
+        m_damage += mod.getIntMod();
+        if (m_damage < 0)
+            m_damage = 0;
+        m_crit += mod.getFloatMod();
+        if (m_crit < (float) 0.0)
+            m_crit = (float) 0.0;
     }
-    */
+
 
     //@NonNull
     @Override
     public String toString() {
-        String ret = "You found " + getName() + "\n[dmg:" + getDamage() + "] [crit:";
+        String ret = "You found ";
+        if (m_modifier != null)
+            ret += " ["+m_modifier+"] ";
+        ret += getName() + "\n[dmg:" + getDamage() + "] [crit:";
          /*
          if(getCrit() >= 0)
              ret+= "+";
