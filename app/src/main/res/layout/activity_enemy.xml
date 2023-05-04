@@ -2,6 +2,7 @@
 
 <!-- Main layout -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ENEMY_main_layout"
     android:layout_width="match_parent"
@@ -13,58 +14,48 @@
     <!-- Table layout of enemy will be programmatically added here -->
 
     <!-- Enemy information text -->
-    <TextView
-        android:id="@+id/ENEMY_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="150dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#0FBD17"
-        android:textSize="20sp" />
 
     <!-- Player information text -->
+
     <TextView
-        android:id="@+id/PLAYER_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#0FBD17"
-        android:textSize="20sp" />
+        style="@style/TextView"
+        android:id="@+id/ENEMY_info_text"
+        android:text="Enemy info text" />
 
     <!-- Enemy button layout -->
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/PLAYER_info_text"
+        android:text="Player info text" />
+
     <LinearLayout
         android:id="@+id/ENEMY_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="30dp">
 
         <!-- Buttons for interacting with enemy will be added here -->
 
         <Button
+            style="@style/Button"
             android:id="@+id/ENEMY_button_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="#140FBD17"
             android:tag="Back"
             android:text="Back"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="30sp" />
+            app:cornerRadius="0dp"
+            app:strokeColor="#0FBD17"
+            app:strokeWidth="2dp" />
 
         <Button
+            style="@style/Button"
             android:id="@+id/ENEMY_button_fight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:backgroundTint="#140FBD17"
             android:tag="Fight"
             android:text="Fight"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="30sp" />
+            app:cornerRadius="0dp"
+            app:strokeColor="#0FBD17"
+            app:strokeWidth="2dp" />
 
     </LinearLayout>
 

@@ -14,51 +14,38 @@
     <!-- Table layout of item will be programmatically added here -->
 
     <!-- Item information text -->
-    <TextView
-        android:id="@+id/ITEM_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="25dp"
-        android:text="Item name and stuff"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#0FBD17" />
 
     <!-- Button layout -->
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/ITEM_info_text"
+        android:text="Item name and stuff" />
+
     <LinearLayout
         android:id="@+id/ITEM_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="30dp">
 
         <!-- Reject button -->
         <Button
+            style="@style/Button"
             android:id="@+id/ITEM_button_reject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="#140FBD17"
             android:tag="Reject"
             android:text="Reject"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
             app:cornerRadius="0sp"
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
         <!-- Accept button -->
         <Button
+            style="@style/Button"
             android:id="@+id/ITEM_button_accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#140FBD17"
             android:tag="Accept"
             android:text="Accept"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
             app:cornerRadius="0sp"
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
