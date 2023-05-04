@@ -9,6 +9,7 @@ public class Armor extends Item
     protected String                m_slot;     //
     protected int                   m_defense;  //
     protected float                 m_dodge;    //
+    protected String                m_modifier;
 
     /**
      * @param _name Armor name
@@ -39,12 +40,25 @@ public class Armor extends Item
         m_dodge = _armor.m_dodge;
     }
 
+    public void applyModifier(Modifier mod) {
+        m_modifier = mod.getName();
+        m_defense += mod.getIntMod();
+        if (m_defense < 0)
+            m_defense = 0;
+        m_dodge += mod.getFloatMod();
+        if (m_dodge < (float) 0.0)
+            m_dodge = (float) 0.0;
+    }
+
     /**
      */
     @Override
     public String toString()
     {
-        String ret = "You found " + getName() + "\n[def:" + getDefense() + "] [dodge:";
+        String ret = "You found ";
+        if (m_modifier != null)
+            ret += " ["+m_modifier+"] ";
+        ret += getName() + "\n[def:" + getDefense() + "] [dodge:";
         if(getDodge() >= 0)
             ret+= "+";
         ret += Math.round(getDodge()*100) + "%]" + "\nTake it?";
