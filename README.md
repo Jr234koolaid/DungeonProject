@@ -7,7 +7,8 @@ Pressed the interact key to interact with items '$' or enemies.
 
 Items are randomly generated and add to the stats of the player.
 
-Defeat the enemy of the map to move to the next map and gain more powerful items.
+Defeat the enemy of the map to get to the doors '#'.
+Interact with the doors to move to the next map and gain more powerful items.
 However, if an enemy defeats you, you have to restart the game all over!
 
 On the last map, there is a boss. Defeat the boss with all of your weapons and armor
