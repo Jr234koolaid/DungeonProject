@@ -7,8 +7,10 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.utsa.cs3443.dungeon.model.Player;
 import edu.utsa.cs3443.dungeon.view.MapActivity;
 
 /**
@@ -29,14 +31,34 @@ public class MainController implements View.OnClickListener
                 {
                     if (result.getResultCode() == Activity.RESULT_OK)
                     {
+                        // Get next floor and map
                         Intent data = result.getData();
 
-                        // Launch new map
-                        Intent intent = new Intent(m_activity, MapActivity.class);
-                        intent.putExtra("EXTRA_MAP_PUSH_FLOOR", data.getIntExtra("EXTRA_MAP_POP_FLOOR", 0));
-                        intent.putExtra("EXTRA_MAP_PUSH_MAP", data.getIntExtra("EXTRA_MAP_POP_MAP", 0));
+                        final int floor = data.getIntExtra("EXTRA_MAP_POP_FLOOR", 0);
+                        final int map = data.getIntExtra("EXTRA_MAP_POP_MAP", 0);
 
-                        m_mapActivityStart.launch(intent);
+                        // Alert the player that they have reached the end of the game
+                        if ((floor == -1) || (map == -1))
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(m_activity);
+                            builder.setMessage("You have won the game!");
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
+                            // Destroy the player
+                            Player.destroy();
+                        }
+
+                        // Launch new map
+                        else
+                        {
+                            Intent intent = new Intent(m_activity, MapActivity.class);
+                            intent.putExtra("EXTRA_MAP_PUSH_FLOOR", data.getIntExtra("EXTRA_MAP_POP_FLOOR", 0));
+                            intent.putExtra("EXTRA_MAP_PUSH_MAP", data.getIntExtra("EXTRA_MAP_POP_MAP", 0));
+
+                            m_mapActivityStart.launch(intent);
+                        }
                     }
                 });
     }

@@ -50,7 +50,7 @@ public class MapController implements View.OnClickListener
                             Enemy enemy = enemyData.getSerializableExtra("EXTRA_ENEMY_POP_ENEMY", Enemy.class);
 
                             // Remove the enemy from the screen
-                            map.removeEnemy(enemy); //TODO: make this work for more than one
+                            map.removeEnemy(enemy);
                         }
                         else
                         {
@@ -150,8 +150,6 @@ public class MapController implements View.OnClickListener
                 {
                     if (player.canInteract(enemy, map))
                     {
-                        //System.out.println("Interacting with enemy: " + enemy.getName());
-
                         Intent intent = new Intent(m_activity, EnemyActivity.class);
                         intent.putExtra("EXTRA_ENEMY_PUSH_ENEMY", enemy);
 
@@ -164,17 +162,7 @@ public class MapController implements View.OnClickListener
                 {
                     if (player.canInteract(item, map))
                     {
-                        /*
-                        System.out.println("Interacting with item: " + item.getName());
-                        for (char[] chArr : item.getLargeCharacter()){
-                            for (char ch : chArr)
-                                System.out.print(ch);
-                            System.out.println();
-                        }
-                         */
-
                         Intent intent = new Intent(m_activity, ItemActivity.class);
-                        //intent.putExtra("EXTRA_ITEM_PUSH_TYPE", item.getType());
                         intent.putExtra("EXTRA_ITEM_PUSH_ITEM", item);
 
                         // Launch new activity
