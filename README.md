@@ -1,4 +1,3 @@
 # DungeonProject
 A small Android text based dungeon game.
-Made by Jocelyn Ting, Josh Fuentes, Juan Riviera, and Richard Powell
-aaaaa
+Made by Jocelyn Ting, Josh Fuentes, Juan Rivera, and Richard Powell
