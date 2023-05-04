@@ -14,20 +14,18 @@
     <!-- Table layout of enemy will be programmatically added here -->
 
     <!-- Enemy information text -->
-
-    <!-- Player information text -->
-
     <TextView
         style="@style/TextView"
         android:id="@+id/ENEMY_info_text"
         android:text="Enemy info text" />
 
-    <!-- Enemy button layout -->
+    <!-- Player information text -->
     <TextView
         style="@style/TextView"
         android:id="@+id/PLAYER_info_text"
         android:text="Player info text" />
 
+    <!-- Enemy button layout -->
     <LinearLayout
         android:id="@+id/ENEMY_button_layout"
         android:layout_width="match_parent"
@@ -36,8 +34,7 @@
         android:orientation="horizontal"
         android:paddingTop="30dp">
 
-        <!-- Buttons for interacting with enemy will be added here -->
-
+        <!-- Back button -->
         <Button
             style="@style/Button"
             android:id="@+id/ENEMY_button_back"
@@ -48,6 +45,7 @@
             app:strokeColor="#0FBD17"
             app:strokeWidth="2dp" />
 
+        <!-- Fight button -->
         <Button
             style="@style/Button"
             android:id="@+id/ENEMY_button_fight"

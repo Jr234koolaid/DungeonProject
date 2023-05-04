@@ -13,7 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="Something Dungeon"
         android:typeface="monospace"
         android:textStyle="bold"
@@ -66,12 +65,11 @@
         app:strokeColor="#0FBD17"
         app:strokeWidth="2dp" /> -->
 
+    <!-- Item info text -->
     <TextView
-        android:id="@+id/MAIN_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="$ - Item"
         android:textColor="#0FBD17"
         android:textSize="20sp"
@@ -84,12 +82,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.539" />
 
+    <!-- Door info text -->
     <TextView
-        android:id="@+id/MAIN_door"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="# - Door"
         android:textColor="#0FBD17"
         android:textSize="20sp"
@@ -102,12 +99,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.578" />
 
+    <!-- Small enemy info text -->
     <TextView
-        android:id="@+id/MAIN_smallEnemy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="^ - small enemy"
         android:textColor="#0FBD17"
         android:textSize="20sp"
@@ -120,12 +116,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.616" />
 
+    <!-- Big enemy info text -->
     <TextView
-        android:id="@+id/MAIN_bigEnemy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="&amp; - big enemy"
         android:textColor="#0FBD17"
         android:textSize="20sp"
@@ -138,12 +133,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.654" />
 
+    <!-- Boss info text -->
     <TextView
-        android:id="@+id/MAIN_boss"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToOutline="false"
-
         android:text="% - boss"
         android:textColor="#0FBD17"
         android:textSize="20sp"
