@@ -9,7 +9,7 @@ public class Player extends Entity
     public static Player           INSTANCE = null;     //
 
     private Weapon                  m_equippedWeapon;   //
-    private Armor[]                 m_equippedArmor;    //
+    private final Armor[]                 m_equippedArmor;    //
 
     /**
      */
@@ -74,16 +74,12 @@ public class Player extends Entity
                     case "feet":
                         m_equippedArmor[3] = (Armor)item;
                         break;
-                        
-                    case "HEALING":
-                        m_hp = m_maxHP;
-                        break;
-
-                    default:
-                        break;
-                        
                 } break;
-                
+
+            case "HEALING":
+                m_hp = m_maxHP;
+                break;
+
             default:
                 break;
         }

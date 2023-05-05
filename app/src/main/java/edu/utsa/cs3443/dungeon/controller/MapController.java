@@ -21,9 +21,9 @@ import edu.utsa.cs3443.dungeon.view.ItemActivity;
  */
 public class MapController implements View.OnClickListener
 {
-    private AppCompatActivity               m_activity;             //
-    private ActivityResultLauncher<Intent>  m_enemyActivityStart;   //
-    private ActivityResultLauncher<Intent>  m_itemActivityStart;    //
+    private final AppCompatActivity               m_activity;             //
+    private final ActivityResultLauncher<Intent>  m_enemyActivityStart;   //
+    private final ActivityResultLauncher<Intent>  m_itemActivityStart;    //
 
     /**
      */
@@ -47,7 +47,7 @@ public class MapController implements View.OnClickListener
                         if (playerWon)
                         {
                             // Get player to remove
-                            Enemy enemy = enemyData.getSerializableExtra("EXTRA_ENEMY_POP_ENEMY", Enemy.class);
+                            Enemy enemy = (Enemy)enemyData.getSerializableExtra("EXTRA_ENEMY_POP_ENEMY");
 
                             // Remove the enemy from the screen
                             map.removeEnemy(enemy);
@@ -84,7 +84,7 @@ public class MapController implements View.OnClickListener
                         if (remove)
                         {
                             // Remove item
-                            final Item item = itemData.getSerializableExtra("EXTRA_ITEM_POP_ITEM", Item.class);
+                            final Item item = (Item)itemData.getSerializableExtra("EXTRA_ITEM_POP_ITEM");
                             map.removeItem(item);
 
                             // Get player

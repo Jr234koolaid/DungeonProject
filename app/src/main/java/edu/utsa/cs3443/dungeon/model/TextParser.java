@@ -10,8 +10,8 @@ import java.util.Scanner;
  */
 public class TextParser
 {
-    private InputStream             m_stream;       //
-    private Scanner                 m_scanner;      //
+    private final InputStream             m_stream;       //
+    private final Scanner                 m_scanner;      //
 
     /**
      */
