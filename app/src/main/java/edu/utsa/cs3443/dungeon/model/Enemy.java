@@ -48,14 +48,14 @@ public class Enemy extends Entity
     }
      */
 
-    /**
+
     public final int takeDamage(final int _attack)
     {
         m_hp -= _attack;
         return _attack; //placeholder probably
         //TODO: maybe make this more interesting
     }
-     */
+
 
     public int attack()
     {

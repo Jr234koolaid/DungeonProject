@@ -60,49 +60,17 @@ public class EnemyController implements View.OnClickListener
 
                 // Player attack
                 final int playerAttack = player.getWeapon().attack();
-                enemy.setHP(enemy.getHP() - playerAttack);
+                final int enemyDamage = enemy.takeDamage(playerAttack);
 
                 // Display attack toast
-                DisplayAttackToast(player.getName(), playerAttack, enemy.getName());
+                DisplayAttackToast(playerName, playerAttack, enemyName);
 
                 // Update enemy info text
                 TextView enemyInfoText = m_activity.findViewById(R.id.ENEMY_info_text);
                 enemyInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", enemyName, enemy.getHP()));
 
-                // Enemy attack
-                final int enemyAttack = enemy.attack();
-                player.setHP(player.getHP() - enemyAttack);
-
-                // Display attack toast
-                DisplayAttackToast(enemyName, enemyAttack, playerName);
-
-                // Update player info text
-                TextView playerInfoText = m_activity.findViewById(R.id.PLAYER_info_text);
-                playerInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", playerName, player.getHP()));
-
-                // Check player's hp first
-                if (player.getHP() <= player.getMinHP())
-                {
-                    // Alert player of loss
-                    AlertDialog.Builder builder = new AlertDialog.Builder(m_activity);
-                    builder.setMessage("You have been defeated by " + enemyName + "...\nGAME OVER!");
-
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.setOnDismissListener(alertDialog12 ->
-                    {
-                        // Finish activity
-                        Intent intent = new Intent();
-                        intent.putExtra("EXTRA_ENEMY_POP_WON", false);
-
-                        m_activity.setResult(Activity.RESULT_OK, intent);
-                        m_activity.finish();
-                    });
-                    alertDialog.show();
-                    //alertDialog.cancel();
-                }
-
-                // Check enemy's hp next
-                else if (enemy.getHP() <= enemy.getMinHP())
+                // Check enemy's hp
+                if (enemy.getHP() <= enemy.getMinHP())
                 {
                     // Alert player of win
                     AlertDialog.Builder builder = new AlertDialog.Builder(m_activity);
@@ -121,6 +89,39 @@ public class EnemyController implements View.OnClickListener
                     });
                     alertDialog.show();
                     //alertDialog.cancel();
+                } else {
+
+                    // Enemy attack
+                    final int enemyAttack = enemy.attack();
+                    final int playerDamage = player.takeDamage(enemyAttack);
+
+                    // Display attack toast
+                    DisplayAttackToast(enemyName, playerDamage, playerName);
+
+                    // Update player info text
+                    TextView playerInfoText = m_activity.findViewById(R.id.PLAYER_info_text);
+                    playerInfoText.setText(String.format(Locale.getDefault(), "%s \nHealth: %d", playerName, player.getHP()));
+
+                    // Check player's hp
+                    if (player.getHP() <= player.getMinHP()) {
+                        // Alert player of loss
+                        AlertDialog.Builder builder = new AlertDialog.Builder(m_activity);
+                        builder.setMessage("You have been defeated by " + enemyName + "...\nGAME OVER!");
+
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.setOnDismissListener(alertDialog12 ->
+                        {
+                            // Finish activity
+                            Intent intent = new Intent();
+                            intent.putExtra("EXTRA_ENEMY_POP_WON", false);
+
+                            m_activity.setResult(Activity.RESULT_OK, intent);
+                            m_activity.finish();
+                        });
+                        alertDialog.show();
+                        //alertDialog.cancel();
+                    }
+
                 }
 
             } break;

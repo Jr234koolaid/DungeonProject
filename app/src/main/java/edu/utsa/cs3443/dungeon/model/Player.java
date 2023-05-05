@@ -74,16 +74,12 @@ public class Player extends Entity
                     case "feet":
                         m_equippedArmor[3] = (Armor)item;
                         break;
-                        
-                    case "HEALING":
-                        m_hp = m_maxHP;
-                        break;
-
-                    default:
-                        break;
-                        
                 } break;
-                
+
+            case "HEALING":
+                m_hp = m_maxHP;
+                break;
+
             default:
                 break;
         }

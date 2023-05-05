@@ -454,7 +454,13 @@ public class Map extends TableLayout
                 } break;
                 
                 case "HEALING":
-                    m_itemList.add(new HealingItem("potion", _assetManager));
+                    HealingItem hItem = new HealingItem("potion", _assetManager);
+                    hItem.setX(x);
+                    hItem.setY(y);
+
+                    m_itemList.add(hItem);
+
+                    m_data[y][x] = hItem.getSmallCharacter();
                     break;
 
                 default:
