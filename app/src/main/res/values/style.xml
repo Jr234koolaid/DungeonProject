@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Button style -->
+    <!--
+    Button style
+    NOTE: removed te following line for compatibility:
+        <item name="android:backgroundTint">#140FBD17</item>
+    -->
     <style name="Button" parent="TextAppearance.AppCompat.Body1">
         <item name="android:fontFamily">monospace</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:backgroundTint">#140FBD17</item>
+
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">16sp</item>
@@ -17,7 +21,8 @@
         <item name="android:fontFamily">monospace</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingHorizontal">30dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
         <item name="android:paddingTop">30dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body1</item>

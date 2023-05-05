@@ -17,7 +17,7 @@ import edu.utsa.cs3443.dungeon.view.MapActivity;
  */
 public class MainController implements View.OnClickListener
 {
-    private AppCompatActivity               m_activity;         //
+    private final AppCompatActivity               m_activity;         //
     private ActivityResultLauncher<Intent>  m_mapActivityStart; //
 
     /**

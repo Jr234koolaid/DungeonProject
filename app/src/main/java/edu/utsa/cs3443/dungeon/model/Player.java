@@ -9,7 +9,7 @@ public class Player extends Entity
     public static Player           INSTANCE = null;     //
 
     private Weapon                  m_equippedWeapon;   //
-    private Armor[]                 m_equippedArmor;    //
+    private final Armor[]                 m_equippedArmor;    //
 
     /**
      */

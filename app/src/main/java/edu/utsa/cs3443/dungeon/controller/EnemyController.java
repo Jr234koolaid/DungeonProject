@@ -19,7 +19,7 @@ import edu.utsa.cs3443.dungeon.model.Player;
  */
 public class EnemyController implements View.OnClickListener
 {
-    private AppCompatActivity       m_activity; //
+    private final AppCompatActivity       m_activity; //
 
     /**
      */
@@ -51,7 +51,7 @@ public class EnemyController implements View.OnClickListener
             case "Fight":
             {
                 // Get enemy
-                Enemy enemy = m_activity.getIntent().getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY", Enemy.class);
+                Enemy enemy = (Enemy)m_activity.getIntent().getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY");
                 final String enemyName = enemy.getName();
 
                 // Get player

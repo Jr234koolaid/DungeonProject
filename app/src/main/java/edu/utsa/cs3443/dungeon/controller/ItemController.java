@@ -12,7 +12,7 @@ import edu.utsa.cs3443.dungeon.model.Item;
  */
 public class ItemController implements View.OnClickListener
 {
-    private AppCompatActivity               m_activity; //
+    private final AppCompatActivity               m_activity; //
 
     /**
      */
@@ -28,7 +28,7 @@ public class ItemController implements View.OnClickListener
     {
         // Get item
         Intent intent = m_activity.getIntent();
-        Item item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Item.class);
+        Item item = (Item) intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM");
 
         // Check tag
         switch(String.valueOf(_view.getTag()))

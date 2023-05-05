@@ -43,7 +43,7 @@ public class EnemyActivity extends AppCompatActivity
         Player player = Player.getInstance();
 
         // Get enemy
-        final Enemy enemy = intent.getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY", Enemy.class);
+        final Enemy enemy = (Enemy)intent.getSerializableExtra("EXTRA_ENEMY_PUSH_ENEMY");
         final char[][] enemyCharacter = enemy.getLargeCharacter();
 
         // Create new table layout
@@ -70,7 +70,9 @@ public class EnemyActivity extends AppCompatActivity
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
                 textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
-                textView.setTextColor(this.getColorStateList(R.color.teal_700));
+                //TODO fix this too
+                //textView.setTextColor(this.getColorStateList(R.color.teal_700));
+                textView.setTextColor(0xFF03DAC5);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(enemyCharacter[i][j]));
 

@@ -36,7 +36,7 @@ public class ItemActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Get item
-        final Item item = intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM", Item.class);
+        final Item item = (Item)intent.getSerializableExtra("EXTRA_ITEM_PUSH_ITEM");
         final char[][] itemCharacter = item.getLargeCharacter();
 
         // Create new table layout
@@ -63,7 +63,9 @@ public class ItemActivity extends AppCompatActivity {
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
                 textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
-                textView.setTextColor(this.getColorStateList(R.color.teal_700));
+                //TODO: fix this as well
+                //textView.setTextColor(this.getColorStateList(R.color.teal_700));
+                textView.setTextColor(0xFF03DAC5);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(itemCharacter[i][j]));
 

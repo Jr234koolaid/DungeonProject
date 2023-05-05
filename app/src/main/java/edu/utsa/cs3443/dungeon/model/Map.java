@@ -27,9 +27,9 @@ public class Map extends TableLayout
     private int                     m_nextFloor;    //
     private int                     m_nextMap;      //
     private char[][]                m_data;         //
-    private ArrayList<Door>         m_doorList;     //
-    private ArrayList<Enemy>        m_enemyList;    //
-    private ArrayList<Item>         m_itemList;     //
+    private final ArrayList<Door>         m_doorList;     //
+    private final ArrayList<Enemy>        m_enemyList;    //
+    private final ArrayList<Item>         m_itemList;     //
 
     /**
      */
@@ -190,7 +190,9 @@ public class Map extends TableLayout
                 textView.setLayoutParams(new TableRow.LayoutParams(textLayoutWidth, textLayoutHeight));
                 textView.setTextAlignment(android.view.View.TEXT_ALIGNMENT_CENTER);
                 textView.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
-                textView.setTextColor(context.getColorStateList(R.color.teal_700));
+                //TODO: fix this
+                // textView.setTextColor(context.getColorStateList(R.color.teal_700));
+                textView.setTextColor(0xFF03DAC5);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19.f);
                 textView.setText(String.valueOf(m_data[i][j]));
 

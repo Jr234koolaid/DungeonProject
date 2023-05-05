@@ -58,8 +58,8 @@ public class MapActivity extends AppCompatActivity
             AssetManager assetManager = getAssets();
 
             // Get floor directories
-            final String rootDirName = ("floor_" + String.valueOf(floorLevel));
-            final String mapDirName = (rootDirName + "/" + "map_" + String.valueOf(mapLevel));
+            final String rootDirName = ("floor_" + floorLevel);
+            final String mapDirName = (rootDirName + "/" + "map_" + mapLevel);
             final String enemyDirName = (mapDirName + "/" + "enemy");
             final String weaponDirName = ("weapons" + "/" + "level" + mapLevel);  //NOTE: will want to change these to floorLevel
             final String armorDirName = ("armor" + "/" + "level" + mapLevel);     //      if we have multiple floors  -R
