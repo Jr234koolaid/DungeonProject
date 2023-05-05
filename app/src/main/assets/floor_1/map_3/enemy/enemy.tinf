@@ -1,4 +1,4 @@
 // Coordinates are 0 index based on both x and y
 // Layout:      ENEMY_NAME{ X_COORD, Y_COORD, SMALL_CHARACTER, MAX_HEALTH, ATTACK }
 
-Wraith{ 22, 7, %, 25, 10 }
+Wraith{ 22, 7, %, 70, 30 }
